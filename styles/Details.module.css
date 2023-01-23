@@ -1,0 +1,70 @@
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px;
+    gap: 1%;
+}
+
+
+.contentImages {
+    width: 60%;
+    order: 1;
+}
+
+
+.contentContacts {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    /*flex-direction: column;*/
+    overflow: hidden;
+    justify-content: center;
+    align-items: baseline;
+    width: 39%;
+    order: 2;
+    border-radius: 2px;
+    background-color: white;
+
+}
+
+
+.contentDetails {
+
+    margin: 20px 0;
+    padding: 20px;
+    width: 60%;
+    border-radius: 2px;
+    background-color: white;
+    order: 3;
+}
+
+
+
+@media screen and (max-width: 600px){
+
+
+    .content {
+        margin: 10px;
+    }
+    .contentImages {
+        width: 100%;
+        order: 1;
+    }
+
+    .contentDetails {
+        width: 100%;
+        order: 2;
+    }
+
+    .contentContacts {
+        width: 100%;
+        order: 3;
+    }
+
+
+}
+
+
+
+
+
