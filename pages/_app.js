@@ -15,6 +15,8 @@ export default function App({ Component, pageProps }) {
       <>
           <Head />
 
+
+
           <div dir='rtl'>
 
               <Header />
