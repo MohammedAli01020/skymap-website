@@ -65,25 +65,24 @@ export default function Home({data}) {
 
 
 
-    const loadMore = (page) => {
+    const loadMore = async (page) => {
 
         updateData({
             ...currentData,
             loading: true
         });
 
-        getAll(page).then((newData) => {
+        const response = await getAll(page);
 
-            updateData({
-                ...currentData,
-                items: newData.content,
-                pageNumber: newData.pageable.pageNumber,
-                loading: false
-            })
+        updateData({
+            ...currentData,
+            items: response.content,
+            pageNumber: response.pageable.pageNumber,
+            loading: false
+        })
 
-
-        });
     }
+
 
 
 
@@ -119,7 +118,7 @@ export default function Home({data}) {
                       onPageChange={(index) => {
                           console.log(index.selected);
                           if (index.selected === currentData.pageNumber) return;
-                          loadMore(index.selected);
+                          loadMore(index.selected).then(r => {});
                       }}
                       forcePage={currentData.pageNumber}
                   />

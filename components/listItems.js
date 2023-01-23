@@ -1,5 +1,3 @@
-// import { LazyLoadImage  } from 'react-lazy-load-image-component';
-
 import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
 import Image from "next/image";
@@ -40,7 +38,7 @@ export default function ListItems({ items }) {
                         <Image className={styles.itemAvatar}
                                        height={300}
                                        width={300}
-                                       quality={30}
+                                       quality={40}
                                        key={item.realEstateId}
                                        src={getTheFirstImage(item)}
                                        alt={item.body} />
