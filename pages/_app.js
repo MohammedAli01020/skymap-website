@@ -13,7 +13,11 @@ export default function App({ Component, pageProps }) {
   return (
 
       <>
-          <Head />
+          <Head >
+
+              <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+
+          </Head>
 
 
 

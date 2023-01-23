@@ -2,9 +2,7 @@
 import {fetchItem} from "@/utils/RealEstatesAPI";
 import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
-// import { Carousel } from 'react-carousel-minimal';
 
-import BootstrapCarousel from "@/components/carousel";
 
 const getTheFirstImage = (item) => {
     if (typeof item.realEstateImageData[0] !== 'undefined') {
@@ -80,13 +78,13 @@ export default function DetailsPage({item}) {
                     {/*image*/}
                     {/*caption*/}
 
-                    {item.realEstateImageData?.length !== 0
-                        && <div className={styles.contentImages}>
+                    {/*{item.realEstateImageData?.length !== 0*/}
+                    {/*    && <div className={styles.contentImages}>*/}
 
-                            <BootstrapCarousel  items={item.realEstateImageData.map((item) => {
-                                return item.imageUrl;
-                            })}/>
-                        </div>}
+                    {/*        <BootstrapCarousel  items={item.realEstateImageData.map((item) => {*/}
+                    {/*            return item.imageUrl;*/}
+                    {/*        })}/>*/}
+                    {/*    </div>}*/}
 
 
 
@@ -116,15 +114,8 @@ export default function DetailsPage({item}) {
                     {/*            thumbnails={true}*/}
                     {/*            thumbnailWidth="100px"*/}
                     {/*            style={{*/}
-
-
                     {/*                overflowY: "hidden",*/}
                     {/*                overflowX: "hidden",*/}
-
-                    {/*                // textAlign: "center",*/}
-                    {/*                // maxWidth: "850px",*/}
-                    {/*                // maxHeight: "500px",*/}
-                    {/*                // margin: "40px auto",*/}
                     {/*            }} />*/}
 
 
