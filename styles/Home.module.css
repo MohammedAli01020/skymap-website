@@ -44,8 +44,6 @@
 }
 
 .itemAvatar {
-    height: 250px;
-    width: 300px;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 2%;

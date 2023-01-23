@@ -37,11 +37,14 @@ export default function ListItems({ items }) {
 
                         key={item.realEstateId} className={styles.itemList} >
 
-                        <img className={styles.itemAvatar}
-                                       loading={"lazy"}
+                        <Image className={styles.itemAvatar}
+                                       height={300}
+                                       width={300}
+                                       quality={30}
                                        key={item.realEstateId}
                                        src={getTheFirstImage(item)}
                                        alt={item.body} />
+
 
                         <div className={styles.itemDetails}>
                             <p>{item.ojective === 0 ? "بيع": "ايجار"}</p>

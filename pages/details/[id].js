@@ -2,6 +2,9 @@
 import {fetchItem} from "@/utils/RealEstatesAPI";
 import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
+// import { Carousel } from 'react-carousel-minimal';
+
+import BootstrapCarousel from "@/components/carousel";
 
 const getTheFirstImage = (item) => {
     if (typeof item.realEstateImageData[0] !== 'undefined') {
@@ -71,11 +74,20 @@ export default function DetailsPage({item}) {
 
             <main>
 
-                <div className='content'>
+                <div className={styles.content} >
 
 
                     {/*image*/}
                     {/*caption*/}
+
+                    {item.realEstateImageData?.length !== 0
+                        && <div className={styles.contentImages}>
+
+                            <BootstrapCarousel  items={item.realEstateImageData.map((item) => {
+                                return item.imageUrl;
+                            })}/>
+                        </div>}
+
 
 
                     {/*{item.realEstateImageData?.length !== 0 &&*/}
