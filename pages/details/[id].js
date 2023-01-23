@@ -1,5 +1,5 @@
-import {useRouter} from "next/router";
-import {fetchItem, getAll} from "@/utils/RealEstatesAPI";
+
+import {fetchItem} from "@/utils/RealEstatesAPI";
 import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
 
@@ -11,12 +11,29 @@ const getTheFirstImage = (item) => {
     }
 }
 
+
+export async function getServerSideProps(context) {
+
+    const {params} = context;
+    const { id } = params;
+
+    const response = await fetchItem(id);
+
+    console.log(response)
+
+    return {
+        props: {
+            item: response,
+        },
+
+
+        // revalidate: 10, // seconds
+    }
+
+}
+
+
 export default function DetailsPage({item}) {
-
-    // const router = useRouter();
-    //
-    // const id = router.query.id;
-
 
     return (
         <>
@@ -161,40 +178,6 @@ export default function DetailsPage({item}) {
 
 }
 
-// export async function getStaticPaths() {
-//
-//     const response = await getAll(0);
-//
-//     const paths = response.content.map((item) => {
-//         return {
-//             params: {
-//                 id: `${item.realEstateId}`,
-//             }
-//         }
-//     });
-//
-//
-//
-//     return {
-//         paths,
-//         fallback: 'blocking'
-//     }
-// }
 
-export async function getServerSideProps(context) {
-
-    const {params} = context;
-    const { id } = params;
-
-    const response = await fetchItem(id);
-
-    return {
-        props: {
-            item: response
-        },
-        // revalidate: 10, // seconds
-    }
-
-}
 
 
