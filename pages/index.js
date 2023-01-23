@@ -54,6 +54,8 @@ const MyPaginate = customStyle(ReactPaginate).attrs({
 
 
 export default function Home({data}) {
+
+
     const [currentData, updateData] = useState({
                 items: data.content,
                 totalElements: data.totalElements,
@@ -64,14 +66,11 @@ export default function Home({data}) {
     });
 
 
-
     const loadMore = async (page) => {
-
         updateData({
             ...currentData,
             loading: true
         });
-
         const response = await getAll(page);
 
         updateData({
@@ -82,9 +81,6 @@ export default function Home({data}) {
         })
 
     }
-
-
-
 
 
 

@@ -11,9 +11,6 @@
 }
 
 .headerLog {
-    width: 100px;
-    height: 45px;
-    object-fit: contain;
     justify-content: space-evenly;
     align-items: center;
 }
