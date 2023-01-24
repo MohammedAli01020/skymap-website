@@ -3,6 +3,8 @@ import {fetchItem} from "@/utils/RealEstatesAPI";
 import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
 
+import Image from "next/image";
+
 
 const getTheFirstImage = (item) => {
     if (typeof item.realEstateImageData[0] !== 'undefined') {
@@ -79,47 +81,23 @@ export default function DetailsPage({item}) {
                     {/*caption*/}
 
                     {/*{item.realEstateImageData?.length !== 0*/}
-                    {/*    && <div className={styles.contentImages}>*/}
-
-                    {/*        <BootstrapCarousel  items={item.realEstateImageData.map((item) => {*/}
+                    {/*    &&*/}
+                    {/*    <div className={styles.contentImages}>*/}
+                    {/*        <Slider  items={item.realEstateImageData.map((item) => {*/}
                     {/*            return item.imageUrl;*/}
                     {/*        })}/>*/}
-                    {/*    </div>}*/}
+
+                    {/*    </div>*/}
+                    {/*        }*/}
 
 
+                    {/*{item.realEstateImageData?.length !== 0*/}
+                    {/*    && (*/}
+                    {/*        <></>*/}
 
-                    {/*{item.realEstateImageData?.length !== 0 &&*/}
-                    {/*    (<div className={styles.contentImages} >*/}
-
-                    {/*        <Carousel*/}
-                    {/*            data={item.realEstateImageData.map((item, index) => {*/}
-                    {/*                return {*/}
-                    {/*                    image: item.imageUrl,*/}
-                    {/*                    caption: index + 1*/}
-                    {/*                }*/}
-                    {/*            })}*/}
-                    {/*            time={2000}*/}
-                    {/*            width="850px"*/}
-                    {/*            height="500px"*/}
-
-                    {/*            radius="10px"*/}
-                    {/*            slideNumber={true}*/}
-                    {/*            captionPosition="bottom"*/}
-                    {/*            automatic={true}*/}
-                    {/*            dots={true}*/}
-                    {/*            pauseIconColor="white"*/}
-                    {/*            pauseIconSize="40px"*/}
-                    {/*            slideBackgroundColor="darkgrey"*/}
-                    {/*            slideImageFit="cover"*/}
-                    {/*            thumbnails={true}*/}
-                    {/*            thumbnailWidth="100px"*/}
-                    {/*            style={{*/}
-                    {/*                overflowY: "hidden",*/}
-                    {/*                overflowX: "hidden",*/}
-                    {/*            }} />*/}
+                    {/*    )}*/}
 
 
-                    {/*    </div>)}*/}
 
 
                     <div className={styles.contentContacts}>

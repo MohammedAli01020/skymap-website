@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 
 
 const getTheFirstImage = (item) => {
@@ -28,40 +29,50 @@ export default function ListItems({ items }) {
             {items.map((item) => {
 
                 return(
-                    <div
-                        onClick={() => {
-                            return route.push(`/details/${item.realEstateId}` , undefined, { scroll: false } );
-                        }}
-
-                        key={item.realEstateId} className={styles.itemList} >
-
-                        <Image className={styles.itemAvatar}
-                                       height={300}
-                                       width={300}
-                                       quality={40}
-                                       key={item.realEstateId}
-                                       src={getTheFirstImage(item)}
-                                       alt={item.body} />
 
 
-                        <div className={styles.itemDetails}>
-                            <p>{item.ojective === 0 ? "بيع": "ايجار"}</p>
+                        <div onClick={() => {
+                                return route.push(`/details/${item.realEstateId}` , undefined, { scroll: false } );
+                            }}
 
-                            <p>{item.requiredPrice} EG</p>
-                            <p>{item.subCat}</p>
-                            <p >{item.body}</p>
-                            <p>{item.buildingArea} m2</p>
+                            key={item.realEstateId} className={styles.itemList} >
 
-                            <a href={"tel:" + item.user.phoneNumber}
-                               onClick={(e) => {
-                                   e.stopPropagation();
-                               }}>
-                                <button style={{padding: "10px"}}>اتصل</button>
-                            </a>
+                            <Image className={styles.itemAvatar}
+                                   height={300}
+                                   width={300}
+                                   quality={25}
+                                   priority={true}
+                                   key={item.realEstateId}
+                                   src={getTheFirstImage(item)}
+                                   alt={item.body} />
+
+
+                            <div className={styles.itemDetails}>
+                                <p>{item.ojective === 0 ? "بيع": "ايجار"}</p>
+
+                                <p>{item.requiredPrice} EG</p>
+                                <p>{item.subCat}</p>
+                                <p >{item.body}</p>
+                                <p>{item.buildingArea} m2</p>
+
+                                <a href={"tel:" + item.user.phoneNumber}
+                                   onClick={(e) => {
+                                       e.stopPropagation();
+                                   }}>
+                                    <button style={{padding: "10px"}}>اتصل</button>
+                                </a>
+
+                            </div>
+
+
+
+
+
 
                         </div>
 
-                    </div>
+
+
                 )
 
                 }

@@ -7,6 +7,9 @@ import customStyle from "styled-components";
 import {useState} from "react";
 import styles from '../styles/Home.module.css'
 
+
+
+
 // You can style your pagination component
 // thanks to styled-components.
 // Use inner class names to style the controls.
@@ -153,3 +156,8 @@ export async function getStaticProps() {
 
 
 }
+
+
+
+/////
+
