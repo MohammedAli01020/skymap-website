@@ -3,7 +3,6 @@ import {fetchItem} from "@/utils/RealEstatesAPI";
 import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
 
-import Image from "next/image";
 import Slider from "@/components/slider";
 
 
@@ -50,6 +49,14 @@ const buildTitle = (item) => {
 
 export default function DetailsPage({item}) {
 
+    const origin =
+        typeof window !== 'undefined' && window.location.origin
+            ? window.location.origin
+            : '';
+
+    console.log(URL);
+
+
     return (
         <>
 
@@ -68,7 +75,7 @@ export default function DetailsPage({item}) {
                 <meta property="og:url" content={`http://skymap.com.s3-website.ap-south-1.amazonaws.com/details/${item.realEstateId}`}/>
                 <meta property="og:title" content={buildTitle(item)}/>
                 <meta property="og:description" content={item.body}/>
-                <meta property="og:image" content='/logo192.png'/>
+                <meta property="og:image" content={`${origin}/logo192.png`}/>
 
 
                 <meta property="twitter:card" content="summary_large_image"/>
@@ -76,7 +83,7 @@ export default function DetailsPage({item}) {
 
                 <meta property="twitter:title" content={buildTitle(item)}/>
                 <meta property="twitter:description" content={item.body}/>
-                <meta property="twitter:image" content='/logo192.png' />
+                <meta property="twitter:image" content={`${origin}/logo192.png`} />
                 <meta property="twitter:card" content="summary_large_image" />
 
 
@@ -101,15 +108,6 @@ export default function DetailsPage({item}) {
 
                         </div>
                             }
-
-
-                    {/*{item.realEstateImageData?.length !== 0*/}
-                    {/*    && (*/}
-                    {/*        <></>*/}
-
-                    {/*    )}*/}
-
-
 
 
                     <div className={styles.contentContacts}>

@@ -1,61 +1,93 @@
-
-import Image from "next/image";
-import {useState} from "react";
+import React, { useState } from "react";
 import styles from '@/styles/Slider.module.css'
+import Image from "next/image";
+
+
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 export default function Slider({items}) {
 
+    const [slideIndex, setSlideIndex] = useState(1)
 
-    const [currentIndex, setIndex] = useState(0);
-
-
-    const prev = () => {
-
-        const isFirst = currentIndex === 0
-        const newIndex = isFirst ? items.length - 1 : currentIndex - 1;
-        setIndex(newIndex)
+    const nextSlide = () => {
+        if(slideIndex !== items.length){
+            setSlideIndex(slideIndex + 1)
+        }
+        else if (slideIndex === items.length){
+            setSlideIndex(1)
+        }
     }
 
-    const next = () => {
-
-        const isLast = currentIndex === items.length - 1
-        const newIndex = isLast ? 0 : currentIndex + 1;
-        setIndex(newIndex)
+    const prevSlide = () => {
+        if(slideIndex !== 1){
+            setSlideIndex(slideIndex - 1)
+        }
+        else if (slideIndex === 1){
+            setSlideIndex(items.length)
+        }
     }
 
+
+
+    const moveDot = index => {
+        setSlideIndex(index)
+    }
 
     return (
+        <div style={{
 
-        <>
-            <div className={styles.container}>
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+            alignContent: "start",
 
+        }}>
+            <div className={styles.containerSlider}>
+                {items.map((item, index) => {
+                    return (
+                        <div
+                            key={index}
+                            className={slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}` }>
+                            <Image
+                                src={item}
+                                fill
+                                priority={true}
+                                quality={50}
+                                objectFit={'cover'}
+                            />
 
+                        </div>
+                    )
+                })}
+                <ArrowCircleRightIcon
+                    className={`${styles.btnSlide} ${styles.next}`}
+                    onClick={() => {
+                        prevSlide()
+                    }}/>
 
-                <img className={styles.fade} style={{
-                    width: "100%",
-                    objectFit: "cover"
-                }}
-                height={350}
-                    src={`${items[currentIndex]}`}
-                    alt={"image"}
-                />
-
-
-
-                <a className={styles.next}  onClick={() => {
-                    next()
-                }}>❯</a>
-                <a className={styles.prev} onClick={() => {
-                    prev()
-                }}>❮</a>
-
-
+                <ArrowCircleLeftIcon
+                    className={`${styles.btnSlide} ${styles.prev}`}
+                    onClick={() => {
+                        nextSlide()
+                    }} />
 
             </div>
 
-        </>
+            <hr />
+            <div className={styles.containerDots}>
+                {items.map((item, index) => (
+                    <img
+                        key={index}
+                        src={item}
+                        onClick={() => moveDot(index + 1)}
+                        className={slideIndex === index + 1 ? `${styles.dot} ${styles.active}` : `${styles.dot}`}
+                    />
+                ))}
+            </div>
 
+        </div>
 
-
-    );
+    )
 }
