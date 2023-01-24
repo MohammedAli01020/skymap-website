@@ -2,7 +2,7 @@
 // const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:5001'
 
 const api = process.env.REACT_APP_CONTACTS_API_URL ||
-    'http://ec2-54-167-167-213.compute-1.amazonaws.com:5000/skymap/api/realestates/'
+    'https://ec2-54-167-167-213.compute-1.amazonaws.com:5000/skymap/api/realestates/'
 
 // let token = localStorage.token
 
