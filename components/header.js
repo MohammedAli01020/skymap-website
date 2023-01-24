@@ -26,7 +26,7 @@ export default function Header() {
 
             <div className={styles.headerItemTwo}>
                 <PhoneIcon className={styles.headerItemIcon} />
-                <a href={""} className={styles.headerItemText}  >⁦+20 111 223 3266⁩</a>
+                <a href={"tel:+201112233266"} className={styles.headerItemText}  >⁦+20 111 223 3266⁩</a>
 
             </div>
 

@@ -45,7 +45,8 @@
     }
 
     .header {
-        padding: 0 0;
-        justify-content: start;
+
+        padding: 0 15px;
+        justify-content: space-between;
     }
 }

@@ -32,7 +32,7 @@ export default function ListItems({ items }) {
 
 
                         <div onClick={() => {
-                                return route.push(`/details/${item.realEstateId}` , undefined, { scroll: false } );
+                                return route.push(`/details/${item.realEstateId}`);
                             }}
 
                             key={item.realEstateId} className={styles.itemList} >
