@@ -36,58 +36,46 @@ export default function Slider({items}) {
     }
 
     return (
-        <div style={{
+        <div className={styles.containerSlider}>
+            {items.map((item, index) => {
+                return (
+                    <div
+                        key={index}
+                        className={slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}` }>
+                        <Image
+                            src={item}
+                            fill
+                            priority={true}
+                            quality={50}
+                            objectFit={'cover'}
+                        />
 
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "start",
-            alignContent: "start",
+                    </div>
+                )
+            })}
+            <ArrowCircleRightIcon
+                className={`${styles.btnSlide} ${styles.next}`}
+                onClick={() => {
+                    prevSlide()
+            }}/>
 
-        }}>
-            <div className={styles.containerSlider}>
-                {items.map((item, index) => {
-                    return (
-                        <div
-                            key={index}
-                            className={slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}` }>
-                            <Image
-                                src={item}
-                                fill
-                                priority={true}
-                                quality={50}
-                                objectFit={'cover'}
-                            />
+            <ArrowCircleLeftIcon
+                className={`${styles.btnSlide} ${styles.prev}`}
+                onClick={() => {
+                nextSlide()
+            }} />
 
-                        </div>
-                    )
-                })}
-                <ArrowCircleRightIcon
-                    className={`${styles.btnSlide} ${styles.next}`}
-                    onClick={() => {
-                        prevSlide()
-                    }}/>
 
-                <ArrowCircleLeftIcon
-                    className={`${styles.btnSlide} ${styles.prev}`}
-                    onClick={() => {
-                        nextSlide()
-                    }} />
 
-            </div>
-
-            <hr />
             <div className={styles.containerDots}>
                 {items.map((item, index) => (
-                    <img
+                    <div
                         key={index}
-                        src={item}
                         onClick={() => moveDot(index + 1)}
                         className={slideIndex === index + 1 ? `${styles.dot} ${styles.active}` : `${styles.dot}`}
-                    />
+                     />
                 ))}
             </div>
-
         </div>
-
     )
 }

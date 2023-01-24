@@ -6,13 +6,13 @@ import Head from 'next/head'
 import Slider from "@/components/slider";
 
 
-const getTheFirstImage = (item) => {
-    if (typeof item.realEstateImageData[0] !== 'undefined') {
-        return item.realEstateImageData[0].imageUrl;
-    } else {
-        return "https://images.unsplash.com/photo-1592595896551-12b371d546d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHw%3D&w=1000&q=80";
-    }
-}
+// const getTheFirstImage = (item) => {
+//     if (typeof item.realEstateImageData[0] !== 'undefined') {
+//         return item.realEstateImageData[0].imageUrl;
+//     } else {
+//         return "https://images.unsplash.com/photo-1592595896551-12b371d546d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHw%3D&w=1000&q=80";
+//     }
+// }
 
 
 export async function getServerSideProps(context) {

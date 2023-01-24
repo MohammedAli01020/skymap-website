@@ -40,6 +40,12 @@
     height: 25px;
     pointer-events: none;
 }
+
+.prev, .next {
+    height: 40px;
+    width: 40px;
+
+}
 .prev {
     top: 50%;
     left: 20px;
@@ -53,24 +59,20 @@
 
 
 .containerDots {
-    /*position: absolute;*/
-    /*bottom: 10px;*/
-    /*left: 50%;*/
-    /*transform: translateX(-50%);*/
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: start;
-    overflow: auto;
 }
 .dot {
-    width: 100px;
-    height: 100px;
-    /*border-radius: 50%;*/
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
     border: 3px solid #f1f1f1;
     margin: 0 5px;
-    /*background: #f1f1f1;*/
+    background: #f1f1f1;
 }
-
 .dot.active {
-    border: 5px solid red;
     background: rgb(32, 32, 32);
 }
