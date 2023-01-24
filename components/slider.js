@@ -9,7 +9,6 @@ export default function Slider({items}) {
     const [currentIndex, setIndex] = useState(0);
 
 
-
     const prev = () => {
 
         const isFirst = currentIndex === 0
@@ -32,13 +31,13 @@ export default function Slider({items}) {
 
 
 
-                <Image className={styles.fade}
-                    priority={true}
+                <img className={styles.fade} style={{
+                    width: "100%",
+                    objectFit: "cover"
+                }}
+                height={350}
                     src={`${items[currentIndex]}`}
                     alt={"image"}
-                    layout='fill'
-                    objectFit={'cover'}
-                    quality={50}
                 />
 
 

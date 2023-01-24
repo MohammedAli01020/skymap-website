@@ -4,6 +4,7 @@ import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
 
 import Image from "next/image";
+import Slider from "@/components/slider";
 
 
 const getTheFirstImage = (item) => {
@@ -36,6 +37,17 @@ export async function getServerSideProps(context) {
 }
 
 
+const buildTitle = (item) => {
+    if (item.phase) {
+        const obj = item.objective === 0 ? "للبيع": "للايجار";
+        return `${item.subCat} ${obj} بالمرحلة ${item.phase}` ;
+    } else {
+        const obj = item.objective === 0 ? "للبيع": "للايجار";
+        return `${item.subCat} ${obj}` ;
+    }
+}
+
+
 export default function DetailsPage({item}) {
 
     return (
@@ -48,23 +60,23 @@ export default function DetailsPage({item}) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-                <meta name="title" content={item.subCat}/>
+                <meta name="title" content={buildTitle(item)}/>
                 <meta name="description" content={item.body}/>
 
 
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content={`http://skymap.com.s3-website.ap-south-1.amazonaws.com/details/${item.realEstateId}`}/>
-                <meta property="og:title" content={item.subCat}/>
+                <meta property="og:title" content={buildTitle(item)}/>
                 <meta property="og:description" content={item.body}/>
-                <meta property="og:image" content={getTheFirstImage(item)}/>
+                <meta property="og:image" content='/logo192.png'/>
 
 
                 <meta property="twitter:card" content="summary_large_image"/>
                 <meta property="twitter:url" content={`http://skymap.com.s3-website.ap-south-1.amazonaws.com/details/${item.realEstateId}`}/>
 
-                <meta property="twitter:title" content={item.subCat}/>
+                <meta property="twitter:title" content={buildTitle(item)}/>
                 <meta property="twitter:description" content={item.body}/>
-                <meta property="twitter:image" content={getTheFirstImage(item)} />
+                <meta property="twitter:image" content='/logo192.png' />
                 <meta property="twitter:card" content="summary_large_image" />
 
 
@@ -80,15 +92,15 @@ export default function DetailsPage({item}) {
                     {/*image*/}
                     {/*caption*/}
 
-                    {/*{item.realEstateImageData?.length !== 0*/}
-                    {/*    &&*/}
-                    {/*    <div className={styles.contentImages}>*/}
-                    {/*        <Slider  items={item.realEstateImageData.map((item) => {*/}
-                    {/*            return item.imageUrl;*/}
-                    {/*        })}/>*/}
+                    {item.realEstateImageData?.length !== 0
+                        &&
+                        <div className={styles.contentImages}>
+                            <Slider  items={item.realEstateImageData.map((item) => {
+                                return item.imageUrl;
+                            })}/>
 
-                    {/*    </div>*/}
-                    {/*        }*/}
+                        </div>
+                            }
 
 
                     {/*{item.realEstateImageData?.length !== 0*/}

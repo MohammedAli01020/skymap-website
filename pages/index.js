@@ -1,13 +1,12 @@
 import Head from 'next/head'
 import {getAll} from "@/utils/RealEstatesAPI";
 import ListItems from "@/components/listItems";
+
 import ReactPaginate from "react-paginate";
 import customStyle from "styled-components";
 
 import {useState} from "react";
 import styles from '../styles/Home.module.css'
-
-
 
 
 // You can style your pagination component
@@ -158,6 +157,4 @@ export async function getStaticProps() {
 }
 
 
-
-/////
 

@@ -5,14 +5,13 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 
-
 export default function App({ Component, pageProps }) {
 
   return (
 
       <>
           <Head >
-
+              <meta name="google-site-verification" content="Sk0jwE1j981x7cuL4cdFvOxMjRx2TMuj-EwkZlj462I" />
           </Head>
 
 
