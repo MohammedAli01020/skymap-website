@@ -7,6 +7,7 @@ import customStyle from "styled-components";
 
 import {useState} from "react";
 import styles from '../styles/Home.module.css'
+import Image from "next/image";
 
 
 // You can style your pagination component
@@ -87,7 +88,7 @@ export default function Home({data}) {
 
 
   return (
-    <>
+    <div >
       <Head>
           <title>عقارات مدينتي skyMap</title>
           <meta
@@ -100,10 +101,12 @@ export default function Home({data}) {
           <link rel="icon" href="/favicon.ico" />
 
       </Head>
-      <main >
+
+      <main className={styles.main}>
 
 
           {/*header*/}
+
           {/*  body*/}
 
           <div className={styles.body}>
@@ -137,7 +140,7 @@ export default function Home({data}) {
           {/*  footer*/}
 
       </main>
-    </>
+    </div>
   )
 }
 

@@ -141,5 +141,7 @@ body {
 }
 
 body, .app {
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
+
+    background-color: white;
 }

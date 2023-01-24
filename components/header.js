@@ -13,7 +13,8 @@ export default function Header() {
 
             <Link href="/" passHref >
                 <Image
-                    width={100}
+                    property={false}
+                    width={45}
                     height={45}
                     objectFit={'contain'}
                     className={styles.headerLog}

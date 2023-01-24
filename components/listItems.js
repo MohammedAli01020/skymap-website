@@ -38,7 +38,7 @@ export default function ListItems({ items }) {
                             key={item.realEstateId} className={styles.itemList} >
 
                             <Image className={styles.itemAvatar}
-                                   height={300}
+                                   height={250}
                                    width={300}
                                    quality={25}
                                    priority={true}
