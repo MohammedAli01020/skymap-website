@@ -52,17 +52,24 @@ export default function Slider({items}) {
                     </div>
                 )
             })}
-            <ArrowCircleRightIcon
-                className={`${styles.btnSlide} ${styles.next}`}
-                onClick={() => {
-                    prevSlide()
-            }}/>
 
-            <ArrowCircleLeftIcon
-                className={`${styles.btnSlide} ${styles.prev}`}
-                onClick={() => {
-                nextSlide()
-            }} />
+            {items.length !== 1 && (
+
+                <>
+                    <ArrowCircleRightIcon
+                        className={`${styles.btnSlide} ${styles.next}`}
+                        onClick={() => {
+                            prevSlide()
+                        }}/>
+
+                    <ArrowCircleLeftIcon
+                        className={`${styles.btnSlide} ${styles.prev}`}
+                        onClick={() => {
+                            nextSlide()
+                        }} />
+
+                </>
+            )}
 
 
 

@@ -2,6 +2,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import styles from '@/styles/Header.module.css'
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
 
@@ -10,13 +11,16 @@ export default function Header() {
         <div className={styles.header}>
 
 
-            <Image
-                width={100}
-                height={45}
-                objectFit={'contain'}
-                className={styles.headerLog}
-                src='/logo192.png'
-                alt='logo192'/>
+            <Link href="/" passHref >
+                <Image
+                    width={100}
+                    height={45}
+                    objectFit={'contain'}
+                    className={styles.headerLog}
+                    src='/logo192.png'
+                    alt='logo192'/>
+
+            </Link>
 
             <div className={styles.headerItem}  >
                 <LocationOnIcon className={styles.headerItemIcon} />
