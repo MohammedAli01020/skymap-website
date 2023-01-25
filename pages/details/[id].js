@@ -75,7 +75,7 @@ export default function DetailsPage({item}) {
                 <meta property="og:url" content={`http://skymap.com.s3-website.ap-south-1.amazonaws.com/details/${item.realEstateId}`}/>
                 <meta property="og:title" content={buildTitle(item)}/>
                 <meta property="og:description" content={item.body}/>
-                <meta property="og:image" content={`${origin}/logo192.png`}/>
+                <meta property="og:image" content="https://images.olx.com.eg/thumbnails/48238123-400x300.jpeg"/>
 
 
                 <meta property="twitter:card" content="summary_large_image"/>
@@ -83,7 +83,7 @@ export default function DetailsPage({item}) {
 
                 <meta property="twitter:title" content={buildTitle(item)}/>
                 <meta property="twitter:description" content={item.body}/>
-                <meta property="twitter:image" content={`${origin}/logo192.png`} />
+                <meta property="twitter:image" content="https://images.olx.com.eg/thumbnails/48238123-400x300.jpeg" />
                 <meta property="twitter:card" content="summary_large_image" />
 
 
@@ -115,15 +115,31 @@ export default function DetailsPage({item}) {
                         {item.user && (
 
                             <>
-                                <a href={"tel:" + item.user.phoneNumber}
-                                   onClick={(e) => {
-                                       e.stopPropagation();
-                                   }}>
-                                    <button style={{padding: "10px"}}>اتصل</button>
-                                </a>
+
+                                <div className={styles.contactItem}>
+                                    <a href={"tel:" + item.user.phoneNumber}
+                                       onClick={(e) => {
+                                           e.stopPropagation();
+                                       }}>
+                                        <button style={{padding: "10px"}}>اتصل</button>
+                                    </a>
 
 
-                                <h1>{item.user.username}</h1>
+                                    <strong>{item.user.username}</strong>
+                                </div>
+
+                                <div className={styles.contactItem}>
+
+                                    <p>السعر المطلوب: <strong>{item.requiredPrice}</strong></p>
+
+                                    {item.remainingPrice && (
+                                        <p>المتبقي:<strong>{item.remainingPrice}</strong></p>
+                                    )
+                                    }
+
+
+                                </div>
+
                             </>
 
 

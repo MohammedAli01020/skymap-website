@@ -11,22 +11,33 @@
     order: 1;
 }
 
+.contactItem {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+
+    border: 1px solid #d5d8df;
+    border-radius: 4px;
+}
+
 
 .contentContacts {
 
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
-    /*flex-direction: column;*/
+    /*flex-wrap: wrap;*/
+    flex-direction: column;
     overflow: hidden;
-    justify-content: center;
-    align-items: baseline;
+    align-items: start;
+    justify-content: start;
     width: 39%;
     order: 2;
     /*border-radius: 2px;*/
 
-    border: 1px solid #d5d8df;
-    border-radius: 4px;
+
 
     background-color: white;
 

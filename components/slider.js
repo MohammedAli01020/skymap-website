@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styles from '@/styles/Slider.module.css'
 import Image from "next/image";
 
@@ -11,23 +11,20 @@ export default function Slider({items}) {
     const [slideIndex, setSlideIndex] = useState(1)
 
     const nextSlide = () => {
-        if(slideIndex !== items.length){
+        if (slideIndex !== items.length) {
             setSlideIndex(slideIndex + 1)
-        }
-        else if (slideIndex === items.length){
+        } else if (slideIndex === items.length) {
             setSlideIndex(1)
         }
     }
 
     const prevSlide = () => {
-        if(slideIndex !== 1){
+        if (slideIndex !== 1) {
             setSlideIndex(slideIndex - 1)
-        }
-        else if (slideIndex === 1){
+        } else if (slideIndex === 1) {
             setSlideIndex(items.length)
         }
     }
-
 
 
     const moveDot = index => {
@@ -40,13 +37,23 @@ export default function Slider({items}) {
                 return (
                     <div
                         key={index}
-                        className={slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}` }>
+                        className={slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}`}>
                         <Image
+
+                            alt={"cover"}
                             src={item}
+
+                            // priority={true}
+                            // quality={50}
+                            // objectFit={'cover'}
+
                             fill
-                            priority={true}
-                            quality={50}
-                            objectFit={'cover'}
+
+                            // height={400}
+                            // width={500}
+
+                            sizes="(max-width: 600px) 60vw, (min-width: 600px) 100vm"
+
                         />
 
                     </div>
@@ -66,11 +73,10 @@ export default function Slider({items}) {
                         className={`${styles.btnSlide} ${styles.prev}`}
                         onClick={() => {
                             nextSlide()
-                        }} />
+                        }}/>
 
                 </>
             )}
-
 
 
             <div className={styles.containerDots}>
@@ -79,7 +85,7 @@ export default function Slider({items}) {
                         key={index}
                         onClick={() => moveDot(index + 1)}
                         className={slideIndex === index + 1 ? `${styles.dot} ${styles.active}` : `${styles.dot}`}
-                     />
+                    />
                 ))}
             </div>
         </div>

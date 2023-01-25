@@ -3,6 +3,7 @@
 }
 
 .itemList {
+    font-size: .9em;
     margin: 10px 0;
     /*padding: 20px;*/
     background: white;

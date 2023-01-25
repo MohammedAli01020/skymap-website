@@ -16,7 +16,7 @@ export default function Header() {
                     property={false}
                     width={45}
                     height={45}
-                    objectFit={'contain'}
+                    // objectFit={'contain'}
                     className={styles.headerLog}
                     src='/logo192.png'
                     alt='logo192'/>

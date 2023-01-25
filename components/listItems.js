@@ -2,13 +2,14 @@ import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import Desc from "@/components/desc";
 
 
 const getTheFirstImage = (item) => {
     if (typeof item.realEstateImageData[0] !== 'undefined') {
         return item.realEstateImageData[0].imageUrl;
     } else {
-        return "https://images.unsplash.com/photo-1592595896551-12b371d546d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHw%3D&w=1000&q=80";
+        return "/icon.webp";
     }
 }
 
@@ -37,23 +38,38 @@ export default function ListItems({ items }) {
 
                             key={item.realEstateId} className={styles.itemList} >
 
-                            <Image className={styles.itemAvatar}
-                                   height={250}
-                                   width={300}
-                                   quality={25}
-                                   priority={true}
+
+                                <Image className={styles.itemAvatar}
+                                    height={250}
+                                    width={300}
+
+                                    // // quality={25}
+                                    // // priority={true}
+
                                    key={item.realEstateId}
                                    src={getTheFirstImage(item)}
                                    alt={item.body} />
 
 
+
+
+
                             <div className={styles.itemDetails}>
                                 <p>{item.ojective === 0 ? "بيع": "ايجار"}</p>
 
-                                <p>{item.requiredPrice} EG</p>
+                                <p style={{
+                                    fontWeight: "bold"
+                                }}>{item.requiredPrice} EG</p>
                                 <p>{item.subCat}</p>
                                 <p >{item.body}</p>
                                 <p>{item.buildingArea} m2</p>
+
+
+                                <Desc data={{
+                                    bedrooms: item.bedrooms,
+                                    bathrooms: item.bathrooms,
+                                    buildingArea: item.buildingArea
+                                }}/>
 
                                 <a href={"tel:" + item.user.phoneNumber}
                                    onClick={(e) => {

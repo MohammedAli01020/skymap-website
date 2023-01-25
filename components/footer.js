@@ -25,12 +25,12 @@ export default function Footer() {
 
 
 
-            <footer className={styles.footerDistributed}>
+            <footer className={styles.footer}>
 
-                <div className={styles.footerLinks}>
+                <div >
                     <h3>Sky<span>Map</span></h3>
 
-                    <p className={styles.footerLinks}>
+                    <p >
                         <a href="#">الرئيسية</a>
                         |
                         <a href="#">عن الشركة</a>
@@ -40,36 +40,25 @@ export default function Footer() {
                         <a href="#">المدونه</a>
                     </p>
 
-                    <p className={styles.footerCompanyName}>Copyright © 2023 <strong>سكاي ماب</strong> جميع الحقوق محفوظة لدي شركة</p>
+                    <p >Copyright © 2023 <strong>سكاي ماب</strong> جميع الحقوق محفوظة لدي شركة</p>
                 </div>
 
-                <div className={styles.footerCenter}>
+                <div >
                     <div>
-                        <i className={styles.faEnvelope}>
-
-                        </i>
                         <p><span>القاهرة</span>
                             مدينتي - مجمع البنوك الدور الثاني</p>
                     </div>
 
                     <div>
-
-                        <i className={styles.faEnvelope}></i>
                          <a href={"tel:+201112233266"}  >⁦+20 111 223 3266⁩</a>
-
 
                     </div>
                     <div>
-                        <i className={styles.faEnvelope}></i>
                         <p><a href="mailto:mohamedalivip6@gmail.com">xyz@gmail.com</a></p>
                     </div>
                 </div>
 
-                <div className={styles.footerRight}>
-                    <p className={styles.footerCompanyAbout}>
-                        <span>عن الشركة</span>
-                        <strong>شركة سكاي ماب للتوسق العقار</strong>يعتبر التسويق العقارى أحد الفروع التطبيقية لعلم التسويق والتسويق العقارى الفعال هو إنتاج ما يمكن بيعه من العقارات، وليس بيع ما يمكن إنتاجه من العقارات، فتتجه الشركات التى تبيع ما يمكنها إنتاجه نحو المنتج العقارى، إذ أن المنتج العقارى يأخذ موقع الصدارة بالنسبة لها، ثم تفكر فى الزبائن بعد ذلك، وتنظر للتسويق أنه مجرد عملية إقناع الزبائن بالشراء
-                    </p>
+                <div >
                     <div className={styles.footerIcons}>
                         <a href="#"><FacebookIcon /></a>
                         <a href="#"><InstagramIcon /></a>

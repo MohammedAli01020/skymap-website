@@ -83,6 +83,10 @@ export default function Home({data}) {
             loading: false
         })
 
+
+
+        window.scroll({top: 0, left: 0, behavior: 'smooth' })
+
     }
 
 
