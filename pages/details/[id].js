@@ -87,7 +87,7 @@ export default function DetailsPage({item}) {
                 <meta property="twitter:card" content="summary_large_image" />
 
 
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href={"/favicon.ico"} />
             </Head>
 
 

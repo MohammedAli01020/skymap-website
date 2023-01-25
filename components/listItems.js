@@ -43,8 +43,8 @@ export default function ListItems({ items }) {
                                     height={250}
                                     width={300}
 
-                                    // // quality={25}
-                                    // // priority={true}
+                                    // quality={25}
+                                    priority={true}
 
                                    key={item.realEstateId}
                                    src={getTheFirstImage(item)}

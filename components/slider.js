@@ -43,7 +43,8 @@ export default function Slider({items}) {
                             alt={"cover"}
                             src={item}
 
-                            // priority={true}
+                            priority={index === 0}
+
                             // quality={50}
                             // objectFit={'cover'}
 
