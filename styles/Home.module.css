@@ -87,8 +87,20 @@
 
 .main {
 
+    position: relative;
 }
 
 .body {
 
+}
+
+.contacts {
+    margin: 20px;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    left: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }

@@ -1,4 +1,7 @@
 .content {
+
+    align-items: center;
+    justify-content: start;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -6,6 +9,10 @@
 
 .item {
 
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 0;
     display: flex;
     gap: 5px;
 }

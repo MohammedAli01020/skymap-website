@@ -1,7 +1,6 @@
 import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
 import Image from "next/image";
-import Link from "next/link";
 import Desc from "@/components/desc";
 
 
@@ -65,11 +64,9 @@ export default function ListItems({ items }) {
                                 <p>{item.buildingArea} m2</p>
 
 
-                                <Desc data={{
-                                    bedrooms: item.bedrooms,
+                                <Desc data={{bedrooms: item.bedrooms,
                                     bathrooms: item.bathrooms,
-                                    buildingArea: item.buildingArea
-                                }}/>
+                                    buildingArea: item.buildingArea}}/>
 
                                 <a href={"tel:" + item.user.phoneNumber}
                                    onClick={(e) => {

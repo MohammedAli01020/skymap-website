@@ -9,6 +9,7 @@
 .contentImages {
     width: 60%;
     order: 1;
+    /*background-color: #000;*/
 }
 
 .contactItem {
@@ -18,40 +19,37 @@
     align-items: center;
     gap: 10px;
     padding: 20px;
-
     border: 1px solid #d5d8df;
     border-radius: 4px;
 }
 
 
 .contentContacts {
-
     display: flex;
     gap: 20px;
     /*flex-wrap: wrap;*/
     flex-direction: column;
     overflow: hidden;
     align-items: start;
-    justify-content: start;
+    justify-content: flex-start;
     width: 39%;
     order: 2;
-    /*border-radius: 2px;*/
-
-
-
     background-color: white;
+
+    /*border: 1px solid #d5d8df;*/
+    /*border-radius: 4px;*/
 
 }
 
 
 .contentDetails {
-
     margin: 20px 0;
     padding: 20px;
     width: 60%;
     background-color: white;
     order: 3;
 
+    align-items: start;
     border: 1px solid #d5d8df;
     border-radius: 4px;
 }

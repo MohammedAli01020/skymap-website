@@ -10,6 +10,11 @@ import styles from '../styles/Home.module.css'
 import Image from "next/image";
 
 
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import MessageIcon from '@mui/icons-material/Message';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Link from "next/link";
+
 // You can style your pagination component
 // thanks to styled-components.
 // Use inner class names to style the controls.
@@ -108,11 +113,6 @@ export default function Home({data}) {
 
       <main className={styles.main}>
 
-
-          {/*header*/}
-
-          {/*  body*/}
-
           <div className={styles.body}>
 
               <div className={styles.list}>
@@ -141,12 +141,26 @@ export default function Home({data}) {
           </div>
 
 
-          {/*  footer*/}
 
+
+          {/*<div className={styles.contacts}>*/}
+
+          {/*   <Link href={"/"}><WhatsAppIcon style={{color: "green"}}/></Link>*/}
+          {/*    <Link href={"/"}> <MessageIcon style={{color: "green"}}/></Link>*/}
+          {/*    <Link href={"/"}> <LocationOnIcon style={{color: "green"}}/></Link>*/}
+
+
+          {/*</div>*/}
       </main>
     </div>
   )
 }
+
+
+// export async function getInitialProps() {
+// //
+// // }
+
 
 export async function getStaticProps() {
 
@@ -162,6 +176,8 @@ export async function getStaticProps() {
 
 
 }
+
+
 
 
 

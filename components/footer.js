@@ -6,6 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import Link from "next/link";
 
 export default function Footer() {
 
@@ -31,13 +32,13 @@ export default function Footer() {
                     <h3>Sky<span>Map</span></h3>
 
                     <p >
-                        <a href="#">الرئيسية</a>
+                        <Link href="/"> الرئيسية </Link>
                         |
-                        <a href="#">عن الشركة</a>
+                        <Link href={"/about"}> عن الشركة </Link>
                         |
-                        <a href="#">تواصل معنا</a>
+                        <Link href={"/contact"}> تواصل معنا </Link>
                         |
-                        <a href="#">المدونه</a>
+                        <Link href="#"> المدونه </Link>
                     </p>
 
                     <p >Copyright © 2023 <strong>سكاي ماب</strong> جميع الحقوق محفوظة لدي شركة</p>
@@ -45,7 +46,7 @@ export default function Footer() {
 
                 <div >
                     <div>
-                        <p><span>القاهرة</span>
+                        <p><span>القاهرة </span>
                             مدينتي - مجمع البنوك الدور الثاني</p>
                     </div>
 

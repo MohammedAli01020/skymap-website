@@ -49,10 +49,6 @@ export default function Slider({items}) {
                             // objectFit={'cover'}
 
                             fill
-
-                            // height={400}
-                            // width={500}
-
                             sizes="(max-width: 600px) 60vw, (min-width: 600px) 100vm"
 
                         />

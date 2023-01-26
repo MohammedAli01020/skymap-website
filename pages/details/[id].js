@@ -4,6 +4,7 @@ import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
 
 import Slider from "@/components/slider";
+import Desc from "@/components/desc";
 
 
 // const getTheFirstImage = (item) => {
@@ -95,10 +96,6 @@ export default function DetailsPage({item}) {
 
                 <div className={styles.content} >
 
-
-                    {/*image*/}
-                    {/*caption*/}
-
                     {item.realEstateImageData?.length !== 0
                         &&
                         <div className={styles.contentImages}>
@@ -136,9 +133,8 @@ export default function DetailsPage({item}) {
                                         <p>المتبقي:<strong>{item.remainingPrice}</strong></p>
                                     )
                                     }
-
-
                                 </div>
+
 
                             </>
 
@@ -154,7 +150,13 @@ export default function DetailsPage({item}) {
 
                     <div className={styles.contentDetails}>
 
-                        <p>{item.body}</p>
+
+
+                        <h3 >التفاصيل</h3>
+                        <Desc data={{bedrooms: item.bedrooms,
+                            bathrooms: item.bathrooms,
+                            buildingArea: item.buildingArea}}/>
+
 
                         <p>المرحلة: {item.phase}</p>
 
@@ -173,6 +175,10 @@ export default function DetailsPage({item}) {
                         {item.remainingPrice && (<p>المتبقي: {item.remainingPrice}</p>)}
 
 
+
+                        <hr />
+                        <h3 >الوصف</h3>
+                        <p>{item.body}</p>
                     </div>
 
                 </div>
