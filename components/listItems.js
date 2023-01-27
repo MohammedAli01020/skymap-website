@@ -5,6 +5,9 @@ import Desc from "@/components/desc";
 
 
 const getTheFirstImage = (item) => {
+
+
+
     if (typeof item.realEstateImageData[0] !== 'undefined') {
         return item.realEstateImageData[0].imageUrl;
     } else {
@@ -42,6 +45,7 @@ export default function ListItems({ items }) {
                                     height={250}
                                     width={300}
 
+                                    // objectFit={'cover'}
                                     // quality={25}
                                     priority={true}
 

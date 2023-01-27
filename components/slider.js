@@ -42,11 +42,7 @@ export default function Slider({items}) {
 
                             alt={"cover"}
                             src={item}
-
                             priority={index === 0}
-
-                            // quality={50}
-                            // objectFit={'cover'}
 
                             fill
                             sizes="(max-width: 600px) 60vw, (min-width: 600px) 100vm"

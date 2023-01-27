@@ -176,9 +176,19 @@ export default function DetailsPage({item}) {
 
 
 
-                        <hr />
-                        <h3 >الوصف</h3>
-                        <p>{item.body}</p>
+
+                        {
+                            item.body && (
+                                <>
+                                    <hr />
+                                    <h3 >الوصف</h3>
+                                    <p>{item.body}</p>
+                                </>
+                            )
+
+
+                        }
+
                     </div>
 
                 </div>

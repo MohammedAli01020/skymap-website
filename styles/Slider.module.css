@@ -1,5 +1,5 @@
 .containerSlider {
-    height: 500px;
+    height: 400px;
 
     position: relative;
 
@@ -9,7 +9,7 @@
 
 .slide {
     width: 100%;
-    height: 500px;
+    height: 400px;
     position: absolute;
     opacity: 0;
     transition: opacity ease-in-out 0.4s;
