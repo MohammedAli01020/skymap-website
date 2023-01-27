@@ -1,65 +1,16 @@
 import Head from 'next/head'
 import {getAll} from "@/utils/RealEstatesAPI";
 import ListItems from "@/components/listItems";
-
-import ReactPaginate from "react-paginate";
-import customStyle from "styled-components";
-
 import {useState} from "react";
 import styles from '../styles/Home.module.css'
-import Image from "next/image";
+
+import Pagination from "@mui/material/Pagination";
 
 
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import MessageIcon from '@mui/icons-material/Message';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Link from "next/link";
-
-// You can style your pagination component
-// thanks to styled-components.
-// Use inner class names to style the controls.
-const MyPaginate = customStyle(ReactPaginate).attrs({
-    // You can redefine classes here, if you want.
-    activeClassName: 'active', // default to "selected"
-})`
-  
-  @media screen and (min-width: 950px) {
-    width: 70%;
-  }
-  
-  margin-bottom: 2rem;
-  display: flex;
-  flex-wrap:wrap;
-  flex-direction: row;
-  justify-content: space-between;
-  list-style-type: none;
-  padding: 0 5rem;
-  li a {
-    border-radius: 7px;
-    padding: 0.1rem 1rem;
-    border: gray 1px solid;
-    cursor: pointer;
-  }
-  li.previous a,
-  li.next a,
-  li.break a {
-    border-color: transparent;
-  }
-  li.active a {
-    background-color: #0366d6;
-    border-color: transparent;
-    color: white;
-    min-width: 32px;
-  }
-  li.disabled a {
-    color: grey;
-  }
-  li.disable,
-  li.disabled a {
-    cursor: default;
-  }
-`;
-
+// import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+// import MessageIcon from '@mui/icons-material/Message';
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
+// import Link from "next/link";
 
 export default function Home({data}) {
 
@@ -113,53 +64,28 @@ export default function Home({data}) {
 
       <main className={styles.main}>
 
-          <div className={styles.body}>
+          <div className={styles.list}>
+              <ListItems  items={currentData.items}/>
 
-              <div className={styles.list}>
-                  <ListItems  items={currentData.items}/>
+              <Pagination
+                  className={styles.pagination}
+                  variant="outlined" shape="rounded"
 
-                  <MyPaginate
-                      pageCount={currentData.totalPages}
-                      onPageChange={(index) => {
-                          console.log(index.selected);
-                          if (index.selected === currentData.pageNumber) return;
-                          loadMore(index.selected).then(r => {});
-                      }}
-                      forcePage={currentData.pageNumber}
-                  />
+                  count={currentData.totalPages}
 
+                  page={currentData.pageNumber} onChange={(e, value)=>{
 
-              </div>
+                         console.log(value);
+                         if (value === currentData.pageNumber) return;
+                         loadMore(value).then(r => {});
 
-
-
-
-
-
-
+              }} />
 
           </div>
-
-
-
-
-          {/*<div className={styles.contacts}>*/}
-
-          {/*   <Link href={"/"}><WhatsAppIcon style={{color: "green"}}/></Link>*/}
-          {/*    <Link href={"/"}> <MessageIcon style={{color: "green"}}/></Link>*/}
-          {/*    <Link href={"/"}> <LocationOnIcon style={{color: "green"}}/></Link>*/}
-
-
-          {/*</div>*/}
       </main>
     </div>
   )
 }
-
-
-// export async function getInitialProps() {
-// //
-// // }
 
 
 export async function getStaticProps() {

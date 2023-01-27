@@ -15,7 +15,7 @@
 @media screen and (min-width: 600px) {
     .itemList {
         flex-direction: row;
-        margin: 20px;
+        margin: 20px 0;
         border: 1px solid #d5d8df;
         border-radius: 4px;
     }
@@ -72,26 +72,41 @@
 
 
 .list {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    margin: 0;
+    margin: 0 20px;
     padding: 0;
     list-style-type: none;
+}
+
+@media screen and (max-width: 600px) {
+    .list{
+        margin: 0;
+    }
 }
 
 @media screen and (min-width: 950px) {
     .list{
         width: 70%;
     }
+
+    .desc{
+        display: flex;
+    }
 }
 
 
 .main {
-
+    display: flex;
+    flex-wrap: wrap;
     position: relative;
 }
 
 .body {
-
+    order: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .contacts {
@@ -103,4 +118,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.pagination {
+
+    margin: 20px 0;
 }

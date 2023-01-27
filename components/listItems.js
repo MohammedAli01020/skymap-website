@@ -46,7 +46,7 @@ export default function ListItems({ items }) {
                                     width={300}
 
                                     // objectFit={'cover'}
-                                    // quality={25}
+                                    // quality={50}
                                     priority={false}
 
                                    key={item.realEstateId}

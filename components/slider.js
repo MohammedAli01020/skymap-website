@@ -44,6 +44,7 @@ export default function Slider({items}) {
                             src={item}
                             priority={index === 0}
 
+                            // quality={50}
                             fill
                             sizes="(max-width: 600px) 60vw, (min-width: 600px) 100vm"
 
