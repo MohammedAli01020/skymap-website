@@ -47,7 +47,7 @@ export default function ListItems({ items }) {
 
                                     // objectFit={'cover'}
                                     // quality={25}
-                                    priority={true}
+                                    priority={false}
 
                                    key={item.realEstateId}
                                    src={getTheFirstImage(item)}
