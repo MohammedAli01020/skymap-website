@@ -5,6 +5,7 @@ import {useState} from "react";
 import styles from '../styles/Home.module.css'
 
 import Pagination from "@mui/material/Pagination";
+import Link from "next/link";
 
 
 // import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -64,6 +65,15 @@ export default function Home({data}) {
 
       <main className={styles.main}>
 
+
+
+          {/*<div>*/}
+
+          {/*    <Link href={"/test" } legacyBehavior><a>go to Test</a></Link>*/}
+          {/*</div>*/}
+
+
+
           <div className={styles.list}>
               <ListItems  items={currentData.items}/>
 
@@ -73,7 +83,11 @@ export default function Home({data}) {
 
                   count={currentData.totalPages}
 
-                  page={currentData.pageNumber} onChange={(e, value)=>{
+                  page={currentData.pageNumber}
+
+
+
+                  onChange={(e, value)=>{
 
                          console.log(value);
                          if (value === currentData.pageNumber) return;

@@ -36,7 +36,7 @@
 
 @media screen and (max-width: 600px) {
     .itemAvatar {
-        width: 100%;
+        max-width: 100%;
     }
 }
 
@@ -48,6 +48,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     /*border-radius: 1%;*/
+    max-width: 100%;
     flex-shrink: 0;
     transition: transform 450ms;
 }

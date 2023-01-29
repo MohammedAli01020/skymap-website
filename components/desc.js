@@ -8,7 +8,6 @@ export default function Desc({data}) {
 
 
     const {bedrooms, bathrooms, buildingArea} = data;
-    console.log("desc" + bedrooms);
 
     return(
         <div className={styles.content}>

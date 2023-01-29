@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
 import Image from "next/image";
 import Desc from "@/components/desc";
+import Link from "next/link";
 
 
 const getTheFirstImage = (item) => {
@@ -33,7 +34,6 @@ export default function ListItems({ items }) {
 
                 return(
 
-
                         <div onClick={() => {
                                 return route.push(`/details/${item.realEstateId}`);
                             }}
@@ -41,24 +41,42 @@ export default function ListItems({ items }) {
                             key={item.realEstateId} className={styles.itemList} >
 
 
-                                <Image className={styles.itemAvatar}
-                                    height={250}
-                                    width={300}
+                            <img
+                                className={styles.itemAvatar}
+                                height={300}
+                                srcSet="https://via.placeholder.com/400x300.webp 400w,
+                                https://via.placeholder.com/800x600.webp 600w,
+                                https://via.placeholder.com/400x300.webp 601w "
 
-                                    // objectFit={'cover'}
-                                    // quality={50}
-                                    priority={false}
+                                key={item.realEstateId}
+                                src="https://via.placeholder.com/400x300.webp"
+                                alt={item.body}
 
-                                   key={item.realEstateId}
-                                   src={getTheFirstImage(item)}
-                                   alt={item.body} />
+                                // sizes="(max-width: 950px) 300w"
+                            />
+
+                                {/*<Image className={styles.itemAvatar}*/}
+                                {/*    height={250}*/}
+                                {/*    width={300}*/}
+
+                                {/*    // objectFit={'cover'}*/}
+                                {/*    // quality={50}*/}
+                                {/*    priority={false}*/}
+
+                                {/*   key={item.realEstateId}*/}
+                                {/*   src={getTheFirstImage(item)}*/}
+                                {/*   alt={item.body} />*/}
+
 
 
 
 
 
                             <div className={styles.itemDetails}>
-                                <p>{item.ojective === 0 ? "بيع": "ايجار"}</p>
+
+                                <Link href={`/details/${item.realEstateId}`} legacyBehavior>
+                                    <a>{item.ojective === 0 ? "بيع": "ايجار"}</a>
+                                </Link>
 
                                 <p style={{
                                     fontWeight: "bold"
