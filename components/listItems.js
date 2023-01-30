@@ -1,19 +1,29 @@
 import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
-import Image from "next/image";
 import Desc from "@/components/desc";
 import Link from "next/link";
 
-
-const getTheFirstImage = (item) => {
-
-
+export const getTheFirstImage = (item) => {
 
     if (typeof item.realEstateImageData[0] !== 'undefined') {
-        return item.realEstateImageData[0].imageUrl;
+        return getImageName(item.realEstateImageData[0].imageUrl);
+
     } else {
         return "/icon.webp";
     }
+}
+
+export const sizeExists = (item) => {
+    return typeof item.realEstateImageData[0] !== 'undefined';
+}
+
+export const getImageName = (imageFile) => {
+    const  resizedUrl = "https://skymap-images-resized.s3.ap-south-1.amazonaws.com/";
+    const  defaultUrl = "https://skymap-images.s3.ap-south-1.amazonaws.com/";
+
+    const result =  resizedUrl + encodeURIComponent(decodeURIComponent(imageFile).substring(defaultUrl.length).split(".")[0]);
+     console.log(result + "-400x300.webp");
+     return result;
 }
 
 export default function ListItems({ items }) {
@@ -44,16 +54,21 @@ export default function ListItems({ items }) {
                             <img
                                 className={styles.itemAvatar}
                                 height={300}
-                                srcSet="https://via.placeholder.com/400x300.webp 400w,
-                                https://via.placeholder.com/800x600.webp 600w,
-                                https://via.placeholder.com/400x300.webp 601w "
 
-                                key={item.realEstateId}
-                                src="https://via.placeholder.com/400x300.webp"
-                                alt={item.body}
 
-                                // sizes="(max-width: 950px) 300w"
+                                srcSet={`${getTheFirstImage(item) +"-400x300.webp" } 3x,
+                                ${ getTheFirstImage(item) +"-800x600.webp"  } 4x`}
+
+                                // getImageName(getTheFirstImage(item))
+
+                            key={item.realEstateId}
+                            src={`${getTheFirstImage(item) + "-400x300.webp"} `}
+                            alt={item.body}
+
+                            // sizes="(max-width: 950px) 300w"
                             />
+                            
+
 
                                 {/*<Image className={styles.itemAvatar}*/}
                                 {/*    height={250}*/}
@@ -90,12 +105,21 @@ export default function ListItems({ items }) {
                                     bathrooms: item.bathrooms,
                                     buildingArea: item.buildingArea}}/>
 
-                                <a href={"tel:" + item.user.phoneNumber}
-                                   onClick={(e) => {
-                                       e.stopPropagation();
-                                   }}>
-                                    <button style={{padding: "10px"}}>اتصل</button>
-                                </a>
+
+                                <button style={{padding: "10px", width: 100}}>
+
+                                    <a href={"tel:" + item.user.phoneNumber}
+
+                                       onClick={(e) => {
+                                           e.stopPropagation();
+
+
+                                       }}
+
+                                    >اتصل</a>
+
+                                </button>
+
 
                             </div>
 

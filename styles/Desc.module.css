@@ -1,8 +1,9 @@
 .content {
 
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     display: flex;
+
     flex-wrap: wrap;
     gap: 10px;
 }

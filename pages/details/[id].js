@@ -5,16 +5,7 @@ import Head from 'next/head'
 
 import Slider from "@/components/slider";
 import Desc from "@/components/desc";
-
-
-// const getTheFirstImage = (item) => {
-//     if (typeof item.realEstateImageData[0] !== 'undefined') {
-//         return item.realEstateImageData[0].imageUrl;
-//     } else {
-//         return "https://images.unsplash.com/photo-1592595896551-12b371d546d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHw%3D&w=1000&q=80";
-//     }
-// }
-
+import {getImageName} from "@/components/listItems";
 
 export async function getServerSideProps(context) {
 
@@ -47,15 +38,29 @@ const buildTitle = (item) => {
     }
 }
 
+export const getTheMetaImage = (item) => {
+
+
+    // const origin =
+    //     typeof window !== 'undefined' && window.location.origin
+    //         ? window.location.origin
+    //         : '';
+    //
+    // console.log(URL);
+
+    if (typeof item.realEstateImageData[0] !== 'undefined') {
+        return getImageName(item.realEstateImageData[0].imageUrl);
+
+    } else {
+        return "/meta-logo.jpeg";
+    }
+}
+
+
 
 export default function DetailsPage({item}) {
 
-    const origin =
-        typeof window !== 'undefined' && window.location.origin
-            ? window.location.origin
-            : '';
 
-    console.log(URL);
 
 
     return (
@@ -76,7 +81,7 @@ export default function DetailsPage({item}) {
                 <meta property="og:url" content={`http://skymap.com.s3-website.ap-south-1.amazonaws.com/details/${item.realEstateId}`}/>
                 <meta property="og:title" content={buildTitle(item)}/>
                 <meta property="og:description" content={item.body}/>
-                <meta property="og:image" content="https://images.olx.com.eg/thumbnails/48238123-400x300.jpeg"/>
+                <meta property="og:image" content={getTheMetaImage(item)} />
 
 
                 <meta property="twitter:card" content="summary_large_image"/>
@@ -84,7 +89,7 @@ export default function DetailsPage({item}) {
 
                 <meta property="twitter:title" content={buildTitle(item)}/>
                 <meta property="twitter:description" content={item.body}/>
-                <meta property="twitter:image" content="https://images.olx.com.eg/thumbnails/48238123-400x300.jpeg" />
+                <meta property="twitter:image" content={getTheMetaImage(item)} />
                 <meta property="twitter:card" content="summary_large_image" />
 
 
@@ -114,12 +119,13 @@ export default function DetailsPage({item}) {
                             <>
 
                                 <div className={styles.contactItem}>
-                                    <a href={"tel:" + item.user.phoneNumber}
-                                       onClick={(e) => {
-                                           e.stopPropagation();
-                                       }}>
-                                        <button style={{padding: "10px"}}>اتصل</button>
-                                    </a>
+
+                                    <button style={{padding: "10px"}}>
+
+                                        <a href={"tel:" + item.user.phoneNumber}>اتصل</a>
+
+                                    </button>
+
 
 
                                     <strong>{item.user.username}</strong>

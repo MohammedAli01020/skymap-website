@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import {getImageName, getTheFirstImage, sizeExists} from "@/components/listItems";
 
 
 export default function Slider({items}) {
@@ -38,17 +39,38 @@ export default function Slider({items}) {
                     <div
                         key={index}
                         className={slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}`}>
-                        <Image
 
-                            alt={"cover"}
-                            src={item}
-                            priority={index === 0}
 
-                            // quality={50}
-                            fill
-                            sizes="(max-width: 600px) 60vw, (min-width: 600px) 100vm"
 
+
+                        <img
+                            style={{width: "100%", objectFit: "contain"}}
+
+                            height={400}
+                            srcSet={`${getImageName(item) +"-400x300.webp" } 400w,
+                            
+                            ${getImageName(item) +"-800x600.webp" } 600w
+                            `}
+
+                            key={item.realEstateId}
+                            src={`${getImageName(item) + "-800x600.webp"}`}
+                            alt={item.body}
+
+                            // sizes="(max-width: 950px) 300w"
                         />
+
+
+                        {/*<Image*/}
+
+                        {/*    alt={"cover"}*/}
+                        {/*    src={item}*/}
+                        {/*    priority={index === 0}*/}
+
+                        {/*    // quality={50}*/}
+                        {/*    fill*/}
+                        {/*    sizes="(max-width: 600px) 60vw, (min-width: 600px) 100vm"*/}
+
+                        {/*/>*/}
 
                     </div>
                 )

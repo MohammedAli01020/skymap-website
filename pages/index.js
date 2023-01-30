@@ -5,13 +5,8 @@ import {useState} from "react";
 import styles from '../styles/Home.module.css'
 
 import Pagination from "@mui/material/Pagination";
-import Link from "next/link";
 
 
-// import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-// import MessageIcon from '@mui/icons-material/Message';
-// import LocationOnIcon from '@mui/icons-material/LocationOn';
-// import Link from "next/link";
 
 export default function Home({data}) {
 
@@ -81,7 +76,7 @@ export default function Home({data}) {
                   className={styles.pagination}
                   variant="outlined" shape="rounded"
 
-                  count={currentData.totalPages}
+                  count={currentData.totalPages - 1}
 
                   page={currentData.pageNumber}
 
