@@ -40,19 +40,17 @@ const buildTitle = (item) => {
 
 export const getTheMetaImage = (item) => {
 
-
-    const origin =
-        typeof window !== 'undefined' && window.location.origin
-            ? window.location.origin
-            : '';
-
+    // const origin =
+    //     typeof window !== 'undefined' && window.location.origin
+    //         ? window.location.origin
+    //         : '';
     // console.log(URL);
 
     if (typeof item.realEstateImageData[0] !== 'undefined') {
         return getImageName(item.realEstateImageData[0].imageUrl) + "-400x300.jpeg";
 
     } else {
-        return origin + "/meta-logo.jpeg";
+        return "https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg";
     }
 }
 
@@ -156,6 +154,9 @@ export default function DetailsPage({item}) {
 
                     <div className={styles.contentDetails}>
 
+
+
+                        <h1 style={{fontSize: 25}}>{buildTitle(item)}</h1>
 
 
                         <h3 >التفاصيل</h3>

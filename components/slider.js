@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from '@/styles/Slider.module.css'
-import Image from "next/image";
+// import Image from "next/image";
 
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
