@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import {getImageName, getTheFirstImage, sizeExists} from "@/components/listItems";
+import {getImageName, sizeExists} from "@/components/listItems";
 
 
 export default function Slider({items}) {

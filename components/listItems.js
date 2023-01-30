@@ -3,18 +3,8 @@ import {useRouter} from "next/router";
 import Desc from "@/components/desc";
 import Link from "next/link";
 
-export const getTheFirstImage = (item) => {
-
-    if (typeof item.realEstateImageData[0] !== 'undefined') {
-        return getImageName(item.realEstateImageData[0].imageUrl);
-
-    } else {
-        return "/icon.webp";
-    }
-}
-
 export const sizeExists = (item) => {
-    return typeof item.realEstateImageData[0] !== 'undefined';
+    return typeof item && item.realEstateImageData && typeof item.realEstateImageData[0] !== 'undefined';
 }
 
 export const getImageName = (imageFile) => {
@@ -24,6 +14,11 @@ export const getImageName = (imageFile) => {
     const result =  resizedUrl + encodeURIComponent(decodeURIComponent(imageFile).substring(defaultUrl.length).split(".")[0]);
      console.log(result + "-400x300.webp");
      return result;
+}
+
+
+const onImageError = (e) => {
+    e.target.src = "https://via.placeholder.com/400x300.webp";
 }
 
 export default function ListItems({ items }) {
@@ -55,17 +50,15 @@ export default function ListItems({ items }) {
                                 className={styles.itemAvatar}
                                 height={300}
 
+                                srcSet={`${sizeExists(item) ? getImageName(item.realEstateImageData[0].imageUrl) +"-400x300.webp" : "/icon.webp"} 3x,
+                                ${sizeExists(item) ? getImageName(item.realEstateImageData[0].imageUrl) +"-800x600.webp" : "/icon.webp"} 4x`}
 
-                                srcSet={`${getTheFirstImage(item) +"-400x300.webp" } 3x,
-                                ${ getTheFirstImage(item) +"-800x600.webp"  } 4x`}
+                                onError={onImageError}
+                                key={item.realEstateId}
+                                src={`${sizeExists(item) ? getImageName(item.realEstateImageData[0].imageUrl) + "-400x300.webp" : "/icon.webp"} `}
+                                alt={item.body}
 
-                                // getImageName(getTheFirstImage(item))
-
-                            key={item.realEstateId}
-                            src={`${getTheFirstImage(item) + "-400x300.webp"} `}
-                            alt={item.body}
-
-                            // sizes="(max-width: 950px) 300w"
+                               // sizes="(max-width: 950px) 300w"
                             />
                             
 
