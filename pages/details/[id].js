@@ -41,18 +41,18 @@ const buildTitle = (item) => {
 export const getTheMetaImage = (item) => {
 
 
-    // const origin =
-    //     typeof window !== 'undefined' && window.location.origin
-    //         ? window.location.origin
-    //         : '';
-    //
+    const origin =
+        typeof window !== 'undefined' && window.location.origin
+            ? window.location.origin
+            : '';
+
     // console.log(URL);
 
     if (typeof item.realEstateImageData[0] !== 'undefined') {
-        return getImageName(item.realEstateImageData[0].imageUrl);
+        return getImageName(item.realEstateImageData[0].imageUrl) + "-400x300.jpeg";
 
     } else {
-        return "/meta-logo.jpeg";
+        return origin + "/meta-logo.jpeg";
     }
 }
 
