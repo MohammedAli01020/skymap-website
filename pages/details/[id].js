@@ -76,14 +76,14 @@ export default function DetailsPage({item}) {
 
 
                 <meta property="og:type" content="website"/>
-                <meta property="og:url" content={`http://skymap.com.s3-website.ap-south-1.amazonaws.com/details/${item.realEstateId}`}/>
+                <meta property="og:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}`}/>
                 <meta property="og:title" content={buildTitle(item)}/>
                 <meta property="og:description" content={item.body}/>
                 <meta property="og:image" content={getTheMetaImage(item)} />
 
 
                 <meta property="twitter:card" content="summary_large_image"/>
-                <meta property="twitter:url" content={`http://skymap.com.s3-website.ap-south-1.amazonaws.com/details/${item.realEstateId}`}/>
+                <meta property="twitter:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}`}/>
 
                 <meta property="twitter:title" content={buildTitle(item)}/>
                 <meta property="twitter:description" content={item.body}/>

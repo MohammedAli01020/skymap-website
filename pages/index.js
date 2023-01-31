@@ -5,6 +5,7 @@ import {useState} from "react";
 import styles from '../styles/Home.module.css'
 
 import Pagination from "@mui/material/Pagination";
+import {buildTitle, getTheMetaImage} from "@/pages/details/[id]";
 
 
 
@@ -46,15 +47,29 @@ export default function Home({data}) {
   return (
     <div >
       <Head>
-          <title>عقارات مدينتي skyMap</title>
+          <title>سكاي ماب – كل مايخص عقارات مدينتى</title>
           <meta
               name="description"
-              content="عقارات مدينتي للبيع وللايجار شقق للبيع وللايجار فيلات للبيع وللايجار محلات ومكاتب ادراية مدينتي madinaty city طلعت مصطفي"
+              content="سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"
           />
 
+
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="apple-touch-icon" href={"/logo192.png"} />
+          <link rel="apple-touch-icon" href={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
           <link rel="icon" href={"/favicon.ico"} />
+
+
+          <meta property="twitter:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
+          <meta property="twitter:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
+          <meta property="twitter:image" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
+          <meta property="twitter:card" content="summary_large_image" />
+
+
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/"}/>
+          <meta property="og:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
+          <meta property="og:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
+          <meta property="og:image" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
 
       </Head>
 
