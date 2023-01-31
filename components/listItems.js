@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
 import Desc from "@/components/desc";
 import Link from "next/link";
+import {buildTitle} from "@/pages/details/[id]";
 
 export const sizeExists = (item) => {
     return typeof item && item.realEstateImageData && typeof item.realEstateImageData[0] !== 'undefined';
@@ -39,11 +40,17 @@ export default function ListItems({ items }) {
 
                 return(
 
-                        <div onClick={() => {
-                                return route.push(`/details/${item.realEstateId}`);
-                            }}
 
-                            key={item.realEstateId} className={styles.itemList} >
+
+                    <Link href={`/details/${item.realEstateId}`} legacyBehavior passHref
+                    key={item.realEstateId}>
+                        <div
+
+                        //     onClick={() => {
+                        //     return route.push(`/details/${item.realEstateId}`);
+                        // }}
+                        //      key={item.realEstateId}
+                            className={styles.itemList} >
 
 
                             <img
@@ -58,22 +65,22 @@ export default function ListItems({ items }) {
                                 src={`${sizeExists(item) ? getImageName(item.realEstateImageData[0].imageUrl) + "-400x300.webp" : "/icon.webp"} `}
                                 alt={item.body}
 
-                               // sizes="(max-width: 950px) 300w"
+                                // sizes="(max-width: 950px) 300w"
                             />
-                            
 
 
-                                {/*<Image className={styles.itemAvatar}*/}
-                                {/*    height={250}*/}
-                                {/*    width={300}*/}
 
-                                {/*    // objectFit={'cover'}*/}
-                                {/*    // quality={50}*/}
-                                {/*    priority={false}*/}
+                            {/*<Image className={styles.itemAvatar}*/}
+                            {/*    height={250}*/}
+                            {/*    width={300}*/}
 
-                                {/*   key={item.realEstateId}*/}
-                                {/*   src={getTheFirstImage(item)}*/}
-                                {/*   alt={item.body} />*/}
+                            {/*    // objectFit={'cover'}*/}
+                            {/*    // quality={50}*/}
+                            {/*    priority={false}*/}
+
+                            {/*   key={item.realEstateId}*/}
+                            {/*   src={getTheFirstImage(item)}*/}
+                            {/*   alt={item.body} />*/}
 
 
 
@@ -82,9 +89,11 @@ export default function ListItems({ items }) {
 
                             <div className={styles.itemDetails}>
 
-                                <Link href={`/details/${item.realEstateId}`} legacyBehavior>
-                                    <a>{item.ojective === 0 ? "بيع": "ايجار"}</a>
-                                </Link>
+                                {/*<Link href={`/details/${item.realEstateId}`} legacyBehavior>*/}
+                                {/*    <a>{item.ojective === 0 ? "بيع": "ايجار"}</a>*/}
+                                {/*</Link>*/}
+
+                                <h1 style={{fontSize: "1.1em"}}>{buildTitle(item)}</h1>
 
                                 <p style={{
                                     fontWeight: "bold"
@@ -99,10 +108,12 @@ export default function ListItems({ items }) {
                                     buildingArea: item.buildingArea}}/>
 
 
-                                <button style={{padding: "10px", width: 100}}>
+                                <button style={{padding: "10px",
+                                    marginBottom: 10,width: 100}}>
 
                                     <a href={"tel:" + item.user.phoneNumber}
 
+                                       style={{textDecoration: "none"}}
                                        onClick={(e) => {
                                            e.stopPropagation();
 
@@ -122,6 +133,9 @@ export default function ListItems({ items }) {
 
 
                         </div>
+
+                    </Link>
+
 
 
 

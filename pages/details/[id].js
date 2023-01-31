@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
 }
 
 
-const buildTitle = (item) => {
+export const buildTitle = (item) => {
     if (item.phase) {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
         return `${item.subCat} ${obj} بالمرحلة ${item.phase}` ;

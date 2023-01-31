@@ -30,6 +30,14 @@ export default function Footer() {
 
                 <div >
                     <h3>Sky<span>Map</span></h3>
+                    <p>حمل تطبيق الاندرويد الآن</p>
+                    <Link href={"https://play.google.com/store/apps/details?id=com.skymap.realestate"}
+                          legacyBehavior passHref >
+                        <img src="https://img.icons8.com/color/48/null/google-play.png" style={{
+                            cursor: "pointer"
+                        }}/>
+                    </Link>
+
 
                     <p >
                         <Link href="/"> الرئيسية </Link>
@@ -61,6 +69,7 @@ export default function Footer() {
 
                 <div >
                     <div className={styles.footerIcons}>
+
                         <a href="#"><FacebookIcon /></a>
                         <a href="#"><InstagramIcon /></a>
                         <a href="#"><LinkedInIcon /></a>

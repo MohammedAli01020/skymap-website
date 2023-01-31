@@ -5,22 +5,18 @@
 .itemList {
     font-size: .9em;
     margin: 10px 0;
-    /*padding: 20px;*/
     background: white;
     display: flex;
     flex-direction: column;
+    border: 1px solid #d5d8df;
+    border-radius: 4px;
 }
 
 
 @media screen and (min-width: 600px) {
     .itemList {
         flex-direction: row;
-        margin: 20px 0;
-        border: 1px solid #d5d8df;
-        border-radius: 4px;
     }
-
-
 
     .totalElements {
         margin-right: 20px;
@@ -47,7 +43,6 @@
 .itemAvatar {
     background-repeat: no-repeat;
     background-size: cover;
-    /*border-radius: 1%;*/
     object-fit: cover;
     max-width: 100%;
     flex-shrink: 0;
@@ -78,16 +73,9 @@
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    margin: 0 20px;
-    padding: 0;
     list-style-type: none;
 }
 
-@media screen and (max-width: 600px) {
-    .list{
-        margin: 0;
-    }
-}
 
 @media screen and (min-width: 950px) {
     .list{
@@ -101,9 +89,18 @@
 
 
 .main {
+    margin: 0 20px;
     display: flex;
     flex-wrap: wrap;
     position: relative;
+}
+
+
+@media screen and (max-width: 600px) {
+    .main {
+        margin: 0 10px;
+
+    }
 }
 
 .body {

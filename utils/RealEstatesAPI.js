@@ -15,7 +15,7 @@ const headers = {
 }
 
 export const getAll = (pageNumber) =>
-  fetch(`${api}all/?pageNumber=${pageNumber}&pageSize=10`, {headers })
+  fetch(`${api}all/?pageNumber=${pageNumber}&pageSize=25`, {headers })
     .then(res => res.json())
     .then(data => {
         return data;
