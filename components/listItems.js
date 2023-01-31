@@ -2,7 +2,14 @@ import styles from '../styles/Home.module.css'
 import {useRouter} from "next/router";
 import Desc from "@/components/desc";
 import Link from "next/link";
-import {buildTitle} from "@/pages/details/[id]";
+import {buildTitle} from "@/pages/details/[...slug]";
+
+
+export const convertToSlug = (text) => {
+    return text.toLowerCase()
+        // .replace(/[^\w ]+/g, '')
+        .replace(/ +/g, '-');
+}
 
 export const sizeExists = (item) => {
     return typeof item && item.realEstateImageData && typeof item.realEstateImageData[0] !== 'undefined';
@@ -40,7 +47,7 @@ export default function ListItems({ items }) {
 
                 return(
 
-                    <Link href={`/details/${item.realEstateId}`} legacyBehavior passHref
+                    <Link href={`/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}.html`} legacyBehavior passHref
                     key={item.realEstateId}>
                         <div
                             className={styles.itemList} >
@@ -82,10 +89,6 @@ export default function ListItems({ items }) {
 
                             <div className={styles.itemDetails}>
 
-                                {/*<Link href={`/details/${item.realEstateId}`} legacyBehavior>*/}
-                                {/*    <a>{item.ojective === 0 ? "بيع": "ايجار"}</a>*/}
-                                {/*</Link>*/}
-
                                 <h1 style={{fontSize: "1.1em"}}>{buildTitle(item)}</h1>
 
                                 <p style={{
@@ -109,8 +112,6 @@ export default function ListItems({ items }) {
                                        style={{textDecoration: "none"}}
                                        onClick={(e) => {
                                            e.stopPropagation();
-
-
                                        }}
 
                                     >اتصل</a>

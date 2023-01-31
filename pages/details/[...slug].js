@@ -5,16 +5,19 @@ import Head from 'next/head'
 
 import Slider from "@/components/slider";
 import Desc from "@/components/desc";
-import {getImageName} from "@/components/listItems";
+import {convertToSlug, getImageName} from "@/components/listItems";
 
 export async function getServerSideProps(context) {
+    console.log(context)
 
     const {params} = context;
-    const { id } = params;
+    const { slug } = params;
+
+    const id = slug[0]
+    // const title = slug[1]
+
 
     const response = await fetchItem(id);
-
-    console.log(response)
 
     return {
         props: {
@@ -59,8 +62,6 @@ export const getTheMetaImage = (item) => {
 export default function DetailsPage({item}) {
 
 
-
-
     return (
         <>
 
@@ -76,14 +77,14 @@ export default function DetailsPage({item}) {
 
 
                 <meta property="og:type" content="website"/>
-                <meta property="og:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}`}/>
+                <meta property="og:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}`}/>
                 <meta property="og:title" content={buildTitle(item)}/>
                 <meta property="og:description" content={item.body}/>
                 <meta property="og:image" content={getTheMetaImage(item)} />
 
 
                 <meta property="twitter:card" content="summary_large_image"/>
-                <meta property="twitter:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}`}/>
+                <meta property="twitter:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}`}/>
 
                 <meta property="twitter:title" content={buildTitle(item)}/>
                 <meta property="twitter:description" content={item.body}/>
