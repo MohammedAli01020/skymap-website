@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://main.d2hqtqv4zfjkly.amplifyapp.com
+
+# Sitemaps
+Sitemap: https://main.d2hqtqv4zfjkly.amplifyapp.com/sitemap.xml

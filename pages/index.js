@@ -5,9 +5,6 @@ import {useState} from "react";
 import styles from '../styles/Home.module.css'
 
 import Pagination from "@mui/material/Pagination";
-import {buildTitle, getTheMetaImage} from "@/pages/details/[id]";
-
-
 
 export default function Home({data}) {
 
@@ -74,13 +71,6 @@ export default function Home({data}) {
       </Head>
 
       <main className={styles.main}>
-
-
-
-          {/*<div>*/}
-
-          {/*    <Link href={"/test" } legacyBehavior><a>go to Test</a></Link>*/}
-          {/*</div>*/}
 
 
 

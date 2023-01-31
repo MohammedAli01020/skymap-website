@@ -40,16 +40,9 @@ export default function ListItems({ items }) {
 
                 return(
 
-
-
                     <Link href={`/details/${item.realEstateId}`} legacyBehavior passHref
                     key={item.realEstateId}>
                         <div
-
-                        //     onClick={() => {
-                        //     return route.push(`/details/${item.realEstateId}`);
-                        // }}
-                        //      key={item.realEstateId}
                             className={styles.itemList} >
 
 
