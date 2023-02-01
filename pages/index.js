@@ -40,6 +40,80 @@ export default function Home({data}) {
     }
 
 
+    function addRealEstateAgentJsonLd() {
+        return {
+            __html: `{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Sky Map",
+  "image": "/logo512.png",
+  "@id": "",
+  "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/",
+  "telephone": "+201141781491",
+  "priceRange": "$$$$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4J4W+RJW, Second New Cairo, Cairo Governorate 4770810",
+    "addressLocality": "Cairo",
+    "postalCode": "19511",
+    "addressCountry": "EG"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.007413,
+    "longitude": 31.4913182
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "sameAs": [
+    "https://www.facebook.com/mohamed.ali.095",
+    "https://www.youtube.com/channel/UC9VpCx1nNxZdk2t_wbcel0Q",
+    "https://main.d2hqtqv4zfjkly.amplifyapp.com"
+  ] 
+}
+  `,
+        };
+    }
+
+
+    function addOrganizationJsonLd() {
+        return {
+            __html: `{
+                  "@context": "https://schema.org",
+                  "@type": "Organization",
+                  "name": "سكاي ماب",
+                  "alternateName": "Sky Map",
+                  "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/",
+                  "logo": "/logo512.png",
+                  "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+201141781491",
+                  "contactType": "sales",
+                  "contactOption": ["TollFree","HearingImpairedSupported"],
+                  "areaServed": "EG",
+                  "availableLanguage": "Arabic"
+                  },
+                  "sameAs": [
+                  "https://www.facebook.com/mohamed.ali.095",
+                  "https://www.youtube.com/channel/UC9VpCx1nNxZdk2t_wbcel0Q",
+                  "https://main.d2hqtqv4zfjkly.amplifyapp.com"
+                  ]
+              }
+  `,
+        };
+    }
 
   return (
     <div >
@@ -68,6 +142,18 @@ export default function Home({data}) {
           <meta property="og:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
           <meta property="og:image" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
 
+
+          <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={addOrganizationJsonLd()}
+              key="organization-jsonld"
+          />
+
+          <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={addRealEstateAgentJsonLd()}
+              key="realEstateAgent-jsonld"
+          />
       </Head>
 
       <main className={styles.main}>
