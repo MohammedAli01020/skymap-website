@@ -111,10 +111,28 @@ export default function Home({data}) {
         };
     }
 
+
+    function addSiteNameJsonLd() {
+        return {
+            __html: `{
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "Sky Map",
+                        "alternateName" : "سكاي ماب",
+                        "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com//"
+                    }
+  `,
+        };
+    }
+
+
   return (
     <div >
       <Head>
           <title>سكاي ماب – كل مايخص عقارات مدينتى</title>
+
+          <meta name="google-site-verification" content="Sk0jwE1j981x7cuL4cdFvOxMjRx2TMuj-EwkZlj462I" />
+
           <meta
               name="description"
               content="سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"
@@ -139,6 +157,9 @@ export default function Home({data}) {
           <meta property="og:image" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
 
 
+
+
+
           <script
               type="application/ld+json"
               dangerouslySetInnerHTML={addOrganizationJsonLd()}
@@ -149,6 +170,12 @@ export default function Home({data}) {
               type="application/ld+json"
               dangerouslySetInnerHTML={addRealEstateAgentJsonLd()}
               key="realEstateAgent-jsonld"
+          />
+
+          <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={addSiteNameJsonLd()}
+              key="siteName-jsonld"
           />
       </Head>
 
