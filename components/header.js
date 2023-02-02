@@ -8,7 +8,7 @@ export default function Header() {
 
     return(<>
 
-        <div className={styles.header}>
+        <header className={styles.header} itemProp={"hasPart"} itemScope itemType={"http://schema.org/WPHeader"}>
 
 
             <Link href="/" passHref >
@@ -35,7 +35,7 @@ export default function Header() {
 
             </div>
 
-        </div>
+        </header>
 
     </>)
 

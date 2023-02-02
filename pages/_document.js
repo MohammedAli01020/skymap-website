@@ -4,7 +4,23 @@ import { Html, Head, Main, NextScript } from 'next/document'
 export default function Document() {
 
 
-    return (
+    function addSiteNameJsonLd() {
+        return {
+            __html: `{
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "Sky Map",
+                        "alternateName" : "سكاي ماب",
+                        "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com//"
+                    }
+  `,
+        };
+    }
+
+
+
+
+        return (
         <Html lang="en" itemscope itemType="http://schema.org/WebPage">
             <Head >
                 <meta name="google-site-verification" content="Sk0jwE1j981x7cuL4cdFvOxMjRx2TMuj-EwkZlj462I" />
@@ -31,6 +47,11 @@ export default function Document() {
                 <meta property="og:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
                 <meta property="og:image" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
 
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={addSiteNameJsonLd()}
+                    key="siteName-jsonld"
+                />
 
             </Head>
             <body>

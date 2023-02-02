@@ -26,7 +26,7 @@ export default function Footer() {
 
 
 
-            <footer className={styles.footer}>
+            <footer className={styles.footer} itemProp={"hasPart"} itemScope itemType={"http://schema.org/WPFooter"} >
 
                 <div >
                     <h3>Sky<span>Map</span></h3>
@@ -39,22 +39,25 @@ export default function Footer() {
                     </Link>
 
 
-                    <ul className={styles.footerMenu}>
-                        <li>
-                            <Link href="/"> الرئيسية </Link>
+                    <ul
+
+                        itemScope itemType={"http://www.schema.org/SiteNavigationElement"}
+                        className={styles.footerMenu} >
+                        <li itemProp={"name"} >
+                            <Link href="/" itemprop={"url"}> الرئيسية </Link>
                         </li>
 
-                        <li>
-                            <Link href={"/about"}> عن الشركة </Link>
+                        <li itemProp={"name"}>
+                            <Link href={"/about"} itemprop={"url"}> عن الشركة </Link>
                         </li>
 
 
-                        <li>
-                            <Link href={"/contact"}> تواصل معنا </Link>
+                        <li itemProp={"name"}>
+                            <Link href={"/contact"} itemprop={"url"}> تواصل معنا </Link>
                         </li>
 
-                        <li>
-                            <Link href="#"> المدونه </Link>
+                        <li itemProp={"name"}>
+                            <Link href="#" itemprop={"url"}> المدونه </Link>
                         </li>
 
                     </ul>
@@ -65,26 +68,26 @@ export default function Footer() {
                 <div >
                     <div>
                         <p><span>القاهرة </span>
-                            مدينتي - مجمع البنوك الدور الثاني</p>
+                        مدينتي - مجمع البنوك الدور الثاني</p>
                     </div>
 
                     <div>
-                         <a href={"tel:+201112233266"}  >⁦+20 111 223 3266⁩</a>
+                         <Link href={"tel:+201112233266"}  >⁦+20 111 223 3266⁩</Link>
 
                     </div>
                     <div>
-                        <p><a href="mailto:mohamedalivip6@gmail.com">xyz@gmail.com</a></p>
+                        <Link href="mailto:mohamedalivip6@gmail.com">xyz@gmail.com</Link>
                     </div>
                 </div>
 
                 <div >
                     <div className={styles.footerIcons}>
 
-                        <a href="#"><FacebookIcon /></a>
-                        <a href="#"><InstagramIcon /></a>
-                        <a href="#"><LinkedInIcon /></a>
-                        <a href="#"><TwitterIcon /></a>
-                        <a href="#"><YouTubeIcon /></a>
+                        <Link href="#"><FacebookIcon /></Link>
+                        <Link href="#"><InstagramIcon /></Link>
+                        <Link href="#"><LinkedInIcon /></Link>
+                        <Link href="#"><TwitterIcon /></Link>
+                        <Link href="#"><YouTubeIcon /></Link>
                     </div>
                 </div>
             </footer>
