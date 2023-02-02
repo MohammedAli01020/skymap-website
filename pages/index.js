@@ -7,8 +7,6 @@ import styles from '../styles/Home.module.css'
 import Pagination from "@mui/material/Pagination";
 
 export default function Home({data}) {
-
-
     const [currentData, updateData] = useState({
                 items: data.content,
                 totalElements: data.totalElements,
@@ -17,8 +15,6 @@ export default function Home({data}) {
                 pageNumber: data.pageable.pageNumber,
                 loading: false
     });
-
-
     const loadMore = async (page) => {
         updateData({
             ...currentData,

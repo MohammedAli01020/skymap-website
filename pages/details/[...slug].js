@@ -30,14 +30,66 @@ export async function getServerSideProps(context) {
 
 }
 
+const subCatNames = new Map([
+
+    //residential
+    ["apartment","شقة"],
+    ["villa", "فيلا منفصلة"],
+    ["townHouse", "تاون هاوس"],
+    ["twinHouse", "توين هاوس"],
+
+    ["duplex", "دوبلكس"],
+
+    ["penthouse", "بنتهاوس"],
+
+    ["villaInCompound","فيلا تجارية"],
+
+
+    ["residentialBuilding","مبني سكني"],
+
+    ["otherResidentialProperties","اخري"],
+    ["studio","ستوديو"],
+
+    // Commercial
+    ["office","مكتب"],
+    ["market","محل تجاري"],
+    ["store","مخزن"],
+    ["workersHousing","سكن عمال"],
+    ["commercialVilla","فيلا تجارية"],
+    ["commercialBuilding","مبني تجاري"],
+    ["otherCommercialProperties","اخري"],
+
+
+    ["garage","جراج"],
+
+    ["restaurantAndCafe","مطعم وكافية"],
+
+    ["clinic","عيادة"],
+    ["factory","مصنع"],
+
+    // lands
+
+    ["agriculturalLand","زراعية"],
+    ["commercialLand","تجارية"],
+
+    ["industrialLand","صناعية"],
+    ["residentialLand","سكنية"],
+
+    ["multipleUseLand","استخدام متعدد"],
+
+    ["otherLands","اخري"],
+
+
+]);
+
 
 export const buildTitle = (item) => {
     if (item.phase) {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${item.subCat} ${obj} بالمرحلة ${item.phase}` ;
+        return `${subCatNames.get(item.subCat)} ${obj} بالمرحلة ${item.phase}` ;
     } else {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${item.subCat} ${obj}` ;
+        return `${subCatNames.get(item.subCat)} ${obj}` ;
     }
 }
 
