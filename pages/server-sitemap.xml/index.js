@@ -1,13 +1,14 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import {convertToSlug} from "@/components/listItems";
+import {subCatNames} from "@/pages/details/[...slug]";
 
 export const buildTitleForSiteMap = (item) => {
     if (item.phase) {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${item.subCat} ${obj} بالمرحلة ${item.phase}` ;
+        return `${subCatNames.get(item.subCat)} ${obj} بالمرحلة ${item.phase}` ;
     } else {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${item.subCat} ${obj}` ;
+        return `${subCatNames.get(item.subCat)} ${obj}` ;
     }
 }
 

@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 
 }
 
-const subCatNames = new Map([
+export const subCatNames = new Map([
 
     //residential
     ["apartment","شقة"],
