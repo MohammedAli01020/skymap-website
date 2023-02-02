@@ -49,9 +49,10 @@ export default function ListItems({ items }) {
 
                     <Link href={`/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}.html`} legacyBehavior passHref
                     key={item.realEstateId}>
+
+
                         <div
                             className={styles.itemList} >
-
 
                             <img
                                 className={styles.itemAvatar}
@@ -127,6 +128,8 @@ export default function ListItems({ items }) {
 
 
                         </div>
+
+
 
                     </Link>
 

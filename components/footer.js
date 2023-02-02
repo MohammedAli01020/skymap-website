@@ -39,15 +39,25 @@ export default function Footer() {
                     </Link>
 
 
-                    <p >
-                        <Link href="/"> الرئيسية </Link>
-                        |
-                        <Link href={"/about"}> عن الشركة </Link>
-                        |
-                        <Link href={"/contact"}> تواصل معنا </Link>
-                        |
-                        <Link href="#"> المدونه </Link>
-                    </p>
+                    <ul className={styles.footerMenu}>
+                        <li>
+                            <Link href="/"> الرئيسية </Link>
+                        </li>
+
+                        <li>
+                            <Link href={"/about"}> عن الشركة </Link>
+                        </li>
+
+
+                        <li>
+                            <Link href={"/contact"}> تواصل معنا </Link>
+                        </li>
+
+                        <li>
+                            <Link href="#"> المدونه </Link>
+                        </li>
+
+                    </ul>
 
                     <p >Copyright © 2023 <strong>سكاي ماب</strong> جميع الحقوق محفوظة لدي شركة</p>
                 </div>

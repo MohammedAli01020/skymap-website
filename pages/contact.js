@@ -1,8 +1,15 @@
+import Head from "next/head";
+
 export default function Contact() {
 
 
     return(
         <>
+            <Head>
+                <title>اتصل بنا</title>
+            </Head>
+
+
             <div style={{display: "flex",
                 gap: 20,
                 flexWrap: "wrap", minHeight: "100vh", alignItems: "start",

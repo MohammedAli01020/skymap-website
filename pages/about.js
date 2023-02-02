@@ -5,14 +5,10 @@ export default function About() {
 
     return(
 
-
-
       <>
 
           <Head>
               <title>من نحن</title>
-
-
 
           </Head>
 

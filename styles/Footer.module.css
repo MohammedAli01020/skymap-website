@@ -44,3 +44,12 @@
 }
 
 
+
+.footerMenu {
+    padding-right: 0;
+}
+.footerMenu li {
+    display: inline;
+    padding-left: 5px;
+}
+

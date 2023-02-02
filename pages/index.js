@@ -47,7 +47,7 @@ export default function Home({data}) {
   "@type": "RealEstateAgent",
   "name": "Sky Map",
   "image": "/logo512.png",
-  "@id": "",
+  "@id": "RealEstateAgent",
   "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/",
   "telephone": "+201141781491",
   "priceRange": "$$$$$$",

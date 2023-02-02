@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import Slider from "@/components/slider";
 import Desc from "@/components/desc";
-import {convertToSlug, getImageName} from "@/components/listItems";
+import {convertToSlug, getImageName, sizeExists} from "@/components/listItems";
 
 export async function getServerSideProps(context) {
     console.log(context)
@@ -61,12 +61,44 @@ export const getTheMetaImage = (item) => {
 
 export default function DetailsPage({item}) {
 
+    function addProductJsonLd() {
+        return {
+            __html: `{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "sku": "${item.realEstateId}",
+  "image": "${sizeExists(item) ? getImageName(item.realEstateImageData[0].imageUrl) + "-800x600.webp" : "/icon.webp"}",
+  "name": "${buildTitle(item)}",
+  "description": "${item.body}",
+
+
+  "offers": {
+    "@type": "Offer",
+    "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}",
+    "itemCondition": "https://schema.org/UsedCondition",
+    "availability": "${!item.deleted && item.postponeDateTime == null  ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"}" ,
+    "price": "${item.requiredPrice}",
+    "priceCurrency": "EGP",
+    "seller": {
+    
+       "name": "Sky Map",
+       "type": "Thing"
+    },
+   "businessFunction": "${item.objective === 0 ? "http://purl.org/goodrelations/v1#Sell" : "http://purl.org/goodrelations/v1#LeaseOut"}"
+  }
+}
+
+  `,
+        };
+    }
+
+
 
     return (
         <>
 
             <Head>
-                <title>title {item.subCat} </title>
+                <title>{buildTitle(item)} </title>
 
                 <meta name="description" content={item.body} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -93,6 +125,13 @@ export default function DetailsPage({item}) {
 
 
                 <link rel="icon" href={"/favicon.ico"} />
+
+
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={addProductJsonLd()}
+                    key="product-jsonld"
+                />
             </Head>
 
 
