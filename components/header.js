@@ -14,8 +14,8 @@ export default function Header() {
             <Link href="/" passHref >
                 <Image
                     property={false}
-                    width={35}
-                    height={35}
+                    width={40}
+                    height={40}
                     // objectFit={'contain'}
                     className={styles.headerLog}
                     src='/logo192.png'

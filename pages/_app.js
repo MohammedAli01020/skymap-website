@@ -7,21 +7,17 @@ export default function App({Component, pageProps}) {
 
     if (Component.getLayout) {
         return (
-            <div dir='rtl'>
-                Component.getLayout(
-                  <Component {...pageProps} />
-                );
-            </div>
-        )
+            Component.getLayout(
+              <Component {...pageProps} />
+            )
+    )
     }
     return (
 
         <>
-            <div dir='rtl'>
-                <Header/>
-                <Component {...pageProps} />
-                <Footer/>
-            </div>
+            <Header/>
+            <Component {...pageProps} />
+            <Footer/>
         </>
 
     )

@@ -6,9 +6,9 @@ import Head from 'next/head'
 import Slider from "@/components/slider";
 import Desc from "@/components/desc";
 import {convertToSlug, getImageName, sizeExists} from "@/components/listItems";
+import {useEffect} from "react";
 
 export async function getServerSideProps(context) {
-    console.log(context)
 
     const {params} = context;
     const { slug } = params;
@@ -16,15 +16,12 @@ export async function getServerSideProps(context) {
     const id = slug[0]
     // const title = slug[1]
 
-
     const response = await fetchItem(id);
 
     return {
         props: {
             item: response,
         },
-
-
         // revalidate: 10, // seconds
     }
 
@@ -82,7 +79,6 @@ export const subCatNames = new Map([
 
 ]);
 
-
 export const buildTitle = (item) => {
     if (item.phase) {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
@@ -109,9 +105,9 @@ export const getTheMetaImage = (item) => {
     }
 }
 
-
-
 export default function DetailsPage({item}) {
+
+
 
     function addProductJsonLd() {
         return {
@@ -144,10 +140,8 @@ export default function DetailsPage({item}) {
         };
     }
 
-
     return (
         <>
-
             <Head>
                 <title>{buildTitle(item)} </title>
 
@@ -289,11 +283,25 @@ export default function DetailsPage({item}) {
 
                     </div>
 
+
+                    <button
+
+                        style={{position: "fixed", bottom: 0}}
+                        onClick={event => {
+                            console.log("ok")
+                            window.scrollTo({
+                                top: 0,
+                                left: 0,
+                                behavior: 'instant',
+                            });
+                    }}>
+                        top
+                    </button>
+
                 </div>
             </main>
 
         </>
-
     )
 
 
