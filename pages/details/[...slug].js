@@ -145,7 +145,6 @@ export default function DetailsPage({item}) {
     }
 
 
-
     return (
         <>
 
@@ -154,7 +153,6 @@ export default function DetailsPage({item}) {
 
                 <meta name="description" content={item.body} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
 
                 <meta name="title" content={buildTitle(item)}/>
                 <meta name="description" content={item.body}/>
@@ -257,7 +255,8 @@ export default function DetailsPage({item}) {
                             buildingArea: item.buildingArea}}/>
 
 
-                        <p>المرحلة: {item.phase}</p>
+                        {item.phase &&  (<p>المرحلة: {item.phase}</p>)}
+
 
                         {item.bedrooms && (<p>غرف النوم: {item.bedrooms}</p>)}
 

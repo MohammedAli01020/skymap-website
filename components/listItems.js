@@ -86,8 +86,6 @@ export default function ListItems({ items }) {
 
 
 
-
-
                             <div className={styles.itemDetails}>
 
                                 <h1 style={{fontSize: "1.1em"}}>{buildTitle(item)}</h1>

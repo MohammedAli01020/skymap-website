@@ -42,7 +42,7 @@ export default function Home({data}) {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
   "name": "Sky Map",
-  "image": "/logo512.png",
+  "image": "https://main.d2hqtqv4zfjkly.amplifyapp.com/logo512.png",
   "@id": "RealEstateAgent",
   "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/",
   "telephone": "+201141781491",
@@ -92,7 +92,7 @@ export default function Home({data}) {
                   "name": "سكاي ماب",
                   "alternateName": "Sky Map",
                   "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/",
-                  "logo": "/logo512.png",
+                  "logo": "https://main.d2hqtqv4zfjkly.amplifyapp.com/logo512.png",
                   "contactPoint": {
                   "@type": "ContactPoint",
                   "telephone": "+201141781491",
@@ -104,7 +104,7 @@ export default function Home({data}) {
                   "sameAs": [
                   "https://www.facebook.com/mohamed.ali.095",
                   "https://www.youtube.com/channel/UC9VpCx1nNxZdk2t_wbcel0Q",
-                  "https://main.d2hqtqv4zfjkly.amplifyapp.com"
+                  "https://main.d2hqtqv4zfjkly.amplifyapp.com/"
                   ]
               }
   `,
@@ -119,7 +119,7 @@ export default function Home({data}) {
                         "@type": "WebSite",
                         "name": "Sky Map",
                         "alternateName" : "سكاي ماب",
-                        "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com//"
+                        "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/"
                     }
   `,
         };
