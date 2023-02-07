@@ -3,9 +3,16 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import styles from '@/styles/Header.module.css'
 import Image from "next/image";
 import Link from "next/link";
+import {signOut, signIn, useSession} from "next-auth/react";
+
 
 export default function Header() {
 
+
+    const { data: session, status: loading} = useSession();
+
+
+    console.log({session, loading})
     return(
         <header className={styles.header} itemProp={"hasPart"} itemScope itemType={"http://schema.org/WPHeader"}>
             <Link href="/" passHref >
@@ -22,7 +29,6 @@ export default function Header() {
 
             <div className={styles.headerItem}  onClick={event => {
                 console.log(process.env.NEXT_PUBLIC_TEST)
-                console.log(process.env.NEXT_PUBLIC_TEST_PRODUCTION)
                 console.log(process.env.NEXT_PUBLIC_AWS)
 
             }}>
@@ -36,6 +42,24 @@ export default function Header() {
                 <a href={"tel:+201112233266"} className={styles.headerItemText}  >⁦+20 111 223 3266⁩</a>
 
             </div>
+
+
+            {loading !== "loading" && session && (
+
+                <button onClick={e => {
+                    e.preventDefault();
+                    signOut().then(r => {});
+                }}>logout {session.user.username}</button>
+            )}
+
+            {loading !== "loading" && !session && (
+                <button onClick={e => {
+                    e.preventDefault();
+                    signIn().then(r => {});
+                }}>
+                    login
+                </button>
+            )}
 
         </header>
     )
