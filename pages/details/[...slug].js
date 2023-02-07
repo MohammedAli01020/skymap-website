@@ -6,7 +6,6 @@ import Head from 'next/head'
 import Slider from "@/components/slider";
 import Desc from "@/components/desc";
 import {convertToSlug, getImageName, sizeExists} from "@/components/listItems";
-import {useEffect} from "react";
 
 export async function getServerSideProps(context) {
 
@@ -178,7 +177,6 @@ export default function DetailsPage({item}) {
                 />
             </Head>
 
-
             <main>
 
                 <div className={styles.content} >
@@ -238,8 +236,6 @@ export default function DetailsPage({item}) {
 
                     <div className={styles.contentDetails}>
 
-
-
                         <h1 style={{fontSize: 25}}>{buildTitle(item)}</h1>
 
 
@@ -282,22 +278,6 @@ export default function DetailsPage({item}) {
                         }
 
                     </div>
-
-
-                    <button
-
-                        style={{position: "fixed", bottom: 0}}
-                        onClick={event => {
-                            console.log("ok")
-                            window.scrollTo({
-                                top: 0,
-                                left: 0,
-                                behavior: 'instant',
-                            });
-                    }}>
-                        top
-                    </button>
-
                 </div>
             </main>
 

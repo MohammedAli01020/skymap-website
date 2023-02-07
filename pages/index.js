@@ -180,9 +180,6 @@ export default function Home({data}) {
       </Head>
 
       <main className={styles.main}>
-
-
-
           <div className={styles.list}>
               <ListItems  items={currentData.items}/>
 
@@ -193,8 +190,6 @@ export default function Home({data}) {
                   count={currentData.totalPages - 1}
 
                   page={currentData.pageNumber}
-
-
 
                   onChange={(e, value)=>{
 

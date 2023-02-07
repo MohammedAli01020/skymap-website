@@ -3,7 +3,6 @@
     display: flex;
     color: white;
     align-items: center;
-    font-size: .9em;
     background-color: #131912;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -15,7 +14,6 @@
 }
 
 .footer a {
-    text-decoration: none;
     color: white;
 }
 
@@ -26,7 +24,6 @@
     cursor: pointer;
     background-color: #33383b;
     border-radius: 2px;
-    font-size: 20px;
     color: #ffffff;
     text-align: center;
     line-height: 35px;

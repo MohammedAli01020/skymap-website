@@ -6,11 +6,8 @@ import Link from "next/link";
 
 export default function Header() {
 
-    return(<>
-
+    return(
         <header className={styles.header} itemProp={"hasPart"} itemScope itemType={"http://schema.org/WPHeader"}>
-
-
             <Link href="/" passHref >
                 <Image
                     property={false}
@@ -23,7 +20,12 @@ export default function Header() {
 
             </Link>
 
-            <div className={styles.headerItem}  >
+            <div className={styles.headerItem}  onClick={event => {
+                console.log(process.env.NEXT_PUBLIC_TEST)
+                console.log(process.env.NEXT_PUBLIC_TEST_PRODUCTION)
+                console.log(process.env.NEXT_PUBLIC_AWS)
+
+            }}>
                 <LocationOnIcon className={styles.headerItemIcon} />
                 <p className={styles.headerItemText}>مجمع البنوك الدور الثاني - مدينتي</p>
 
@@ -36,8 +38,7 @@ export default function Header() {
             </div>
 
         </header>
-
-    </>)
+    )
 
 
 }
