@@ -3,7 +3,8 @@
     display: flex;
     color: white;
     align-items: center;
-    background-color: #131912;
+    /*background-color: #131912;*/
+    background-color: black;
     flex-wrap: wrap;
     justify-content: space-between;
 }

@@ -27,14 +27,14 @@ export const fetchItem = (id) =>
 
 
 export const getAllPosts = (pageNumber) =>
-    fetch(`${localHostApi}/api/posts/all/?pageNumber=${pageNumber}&pageSize=2`, {headers })
+    fetch(`${api}/api/posts/all/?pageNumber=${pageNumber}&pageSize=25`, {headers })
         .then(res => res)
         .catch(reason => reason)
 
 
 
 export const fetchPostItem = (id) =>
-    fetch(`${localHostApi}/api/posts/id/${id}`, {headers })
+    fetch(`${api}/api/posts/id/${id}`, {headers })
         .then(res => res)
         .catch(e => e)
 
@@ -43,7 +43,7 @@ export const fetchPostItem = (id) =>
 
 
 export const createPost = (body) =>
-  fetch(`${localHostApi}/api/posts/modify`, {
+  fetch(`${api}/api/posts/modify`, {
     method: 'POST',
     headers: {
       ...headers,

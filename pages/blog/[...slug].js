@@ -2,6 +2,8 @@ import {fetchPostItem} from "@/utils/RealEstatesAPI";
 import Head from "next/head";
 import {serialize} from "next-mdx-remote/serialize";
 import {MDXRemote} from "next-mdx-remote";
+import {Code, Heading} from "@chakra-ui/react";
+import MDXComponents from "@/components/MDXComponents";
 
 export async function getServerSideProps(context) {
 
@@ -20,7 +22,25 @@ export async function getServerSideProps(context) {
 
 
             // const sss = ` ## wleocme here *wleocm* **msm** hi welcome`;
-            const mdxSource = await serialize(post.content)
+            const mdxSource = await serialize(post.content,
+
+
+
+                // {
+                //
+                //     // made available to the arguments of any custom mdx component
+                //     scope: {},
+                //     // MDX's available options, see the MDX docs for more info.
+                //     // https://mdxjs.com/packages/mdx/#compilefile-options
+                //     mdxOptions: {
+                //         remarkPlugins: [],
+                //         rehypePlugins: [],
+                //         format: 'mdx',
+                //     },
+                //     // Indicates whether or not to parse the frontmatter from the mdx source
+                //     parseFrontmatter: false,
+                // }
+            )
 
 
 
@@ -96,12 +116,17 @@ export default function PostDetails({post, mdxSource}) {
             </header>
 
 
-
-            <section dir={"ltr"} lang={"en"} itemProp="articleBody" style={{margin: "0 40px"}}>
-                <MDXRemote {...mdxSource} />
+            {/*dir={"ltr"} lang={"en"}*/}
+            <section  itemProp="articleBody" style={{margin: "0 40px"}}>
+                <MDXRemote {...mdxSource} components={components} />
             </section>
         </article>
 
 
     </>
+}
+
+const components = {
+    img: (props) => <img {...props} style={{maxWidth: "100%", maxHeight: "500px"}} />,
+
 }

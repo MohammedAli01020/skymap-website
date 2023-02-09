@@ -40,9 +40,6 @@ export default function Slider({items}) {
                         key={index}
                         className={slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}`}>
 
-
-
-
                         <img
                             style={{width: "100%", objectFit: "contain"}}
 
