@@ -15,14 +15,24 @@ export async function getServerSideProps(context) {
     const id = slug[0]
     // const title = slug[1]
 
-    const response = await fetchItem(id);
+    try {
+        const response = await fetchItem(id);
+        if (response.ok && response) {
+            const item = await response.json()
+            return {
+                props: {
+                    item
+                },
+                // revalidate: 10, // seconds
+            }
+        } else {
+            return { notFound: true };
+        }
 
-    return {
-        props: {
-            item: response,
-        },
-        // revalidate: 10, // seconds
+    } catch (e) {
+        return { notFound: true };
     }
+
 
 }
 
@@ -100,12 +110,11 @@ export const getTheMetaImage = (item) => {
         return getImageName(item.realEstateImageData[0].imageUrl) + "-400x300.jpeg";
 
     } else {
-        return "https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg";
+        return `${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`;
     }
 }
 
 export default function DetailsPage({item}) {
-
 
 
     function addProductJsonLd() {
@@ -121,7 +130,7 @@ export default function DetailsPage({item}) {
 
   "offers": {
     "@type": "Offer",
-    "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}",
+    "url": "${process.env.NEXT_PUBLIC_BASE_URL}/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}",
     "itemCondition": "https://schema.org/UsedCondition",
     "availability": "${!item.deleted && item.postponeDateTime == null  ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"}" ,
     "price": "${item.requiredPrice}",
@@ -152,14 +161,14 @@ export default function DetailsPage({item}) {
 
 
                 <meta property="og:type" content="website"/>
-                <meta property="og:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}`}/>
+                <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}`}/>
                 <meta property="og:title" content={buildTitle(item)}/>
                 <meta property="og:description" content={item.body}/>
                 <meta property="og:image" content={getTheMetaImage(item)} />
 
 
                 <meta property="twitter:card" content="summary_large_image"/>
-                <meta property="twitter:url" content={`https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}`}/>
+                <meta property="twitter:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/details/${item.realEstateId}/${convertToSlug(buildTitle(item))}`}/>
 
                 <meta property="twitter:title" content={buildTitle(item)}/>
                 <meta property="twitter:description" content={item.body}/>

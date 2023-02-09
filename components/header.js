@@ -12,7 +12,6 @@ export default function Header() {
     const { data: session, status: loading} = useSession();
 
 
-    console.log({session, loading})
     return(
         <header className={styles.header} itemProp={"hasPart"} itemScope itemType={"http://schema.org/WPHeader"}>
             <Link href="/" passHref >

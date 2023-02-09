@@ -20,7 +20,9 @@ export default function Home({data}) {
             ...currentData,
             loading: true
         });
-        const response = await getAll(page);
+
+        const data = await getAll(page);
+        const response = await data.json();
 
         updateData({
             ...currentData,
@@ -28,7 +30,6 @@ export default function Home({data}) {
             pageNumber: response.pageable.pageNumber,
             loading: false
         })
-
 
 
         window.scroll({top: 0, left: 0, behavior: 'smooth' })
@@ -42,9 +43,9 @@ export default function Home({data}) {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
   "name": "Sky Map",
-  "image": "https://main.d2hqtqv4zfjkly.amplifyapp.com/logo512.png",
+  "image": "${process.env.NEXT_PUBLIC_BASE_URL}/logo512.png",
   "@id": "RealEstateAgent",
-  "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/",
+  "url": "${process.env.NEXT_PUBLIC_BASE_URL}/",
   "telephone": "+201141781491",
   "priceRange": "$$$$$$",
   "address": {
@@ -76,7 +77,7 @@ export default function Home({data}) {
   "sameAs": [
     "https://www.facebook.com/mohamed.ali.095",
     "https://www.youtube.com/channel/UC9VpCx1nNxZdk2t_wbcel0Q",
-    "https://main.d2hqtqv4zfjkly.amplifyapp.com"
+    "${process.env.NEXT_PUBLIC_BASE_URL}"
   ] 
 }
   `,
@@ -91,8 +92,8 @@ export default function Home({data}) {
                   "@type": "Organization",
                   "name": "سكاي ماب",
                   "alternateName": "Sky Map",
-                  "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/",
-                  "logo": "https://main.d2hqtqv4zfjkly.amplifyapp.com/logo512.png",
+                  "url": "${process.env.NEXT_PUBLIC_BASE_URL}/",
+                  "logo": "${process.env.NEXT_PUBLIC_BASE_URL}/logo512.png",
                   "contactPoint": {
                   "@type": "ContactPoint",
                   "telephone": "+201141781491",
@@ -104,7 +105,7 @@ export default function Home({data}) {
                   "sameAs": [
                   "https://www.facebook.com/mohamed.ali.095",
                   "https://www.youtube.com/channel/UC9VpCx1nNxZdk2t_wbcel0Q",
-                  "https://main.d2hqtqv4zfjkly.amplifyapp.com/"
+                  "${process.env.NEXT_PUBLIC_BASE_URL}/"
                   ]
               }
   `,
@@ -119,7 +120,7 @@ export default function Home({data}) {
                         "@type": "WebSite",
                         "name": "Sky Map",
                         "alternateName" : "سكاي ماب",
-                        "url": "https://main.d2hqtqv4zfjkly.amplifyapp.com/"
+                        "url": "${process.env.NEXT_PUBLIC_BASE_URL}/"
                     }
   `,
         };
@@ -140,21 +141,21 @@ export default function Home({data}) {
 
 
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="apple-touch-icon" href={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
+          <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
           <link rel="icon" href={"/favicon.ico"} />
 
 
           <meta property="twitter:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
           <meta property="twitter:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
-          <meta property="twitter:image" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
+          <meta property="twitter:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
           <meta property="twitter:card" content="summary_large_image" />
 
 
           <meta property="og:type" content="website" />
-          <meta property="og:url" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/"}/>
+          <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/`}/>
           <meta property="og:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
           <meta property="og:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
-          <meta property="og:image" content={"https://main.d2hqtqv4zfjkly.amplifyapp.com/meta-logo.jpeg"} />
+          <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
 
 
 
@@ -191,6 +192,7 @@ export default function Home({data}) {
 
                   page={currentData.pageNumber}
 
+
                   onChange={(e, value)=>{
 
                          console.log(value);
@@ -208,14 +210,26 @@ export default function Home({data}) {
 
 export async function getStaticProps() {
 
-    const response = await getAll(0);
+    try {
+        const response = await getAll(0);
 
-    return {
-        props: {
-            data: response
-        },
-        revalidate: 10, // seconds
+        if (response.ok && response) {
+
+            const data = await response.json()
+            return {
+                props: {
+                    data
+                },
+                revalidate: 10  // seconds
+            }
+        } else {
+            return { notFound: true };
+        }
+
+    } catch (e) {
+        return { notFound: true };
     }
+
 
 
 

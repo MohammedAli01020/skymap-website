@@ -43,7 +43,7 @@ export default function Footer() {
                         </li>
 
                         <li itemProp={"name"}>
-                            <Link href="#" itemprop={"url"}> المدونه </Link>
+                            <Link href={"/blog"} itemprop={"url"}> المدونه </Link>
                         </li>
 
                     </ul>

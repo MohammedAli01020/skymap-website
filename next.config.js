@@ -1,14 +1,29 @@
 /** @type {import('next').NextConfig} */
 
-
+// next.config.js
+const removeImports = require('next-remove-imports')({
+    options: { }
+})
 
 const nextConfig =
     {
       reactStrictMode: true,
+      experimental: { esmExternals: true },
       images: {
-        domains: ['images.unsplash.com', 's3.ap-south-1.amazonaws.com'],
+        domains: ['images.unsplash.com', 'main.d2hqtqv4zfjkly.amplifyapp.com'],
         imageSizes: [16, 32, 48, 64],
-        deviceSizes: [96, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840]
+        deviceSizes: [96, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+
+          remotePatterns: [
+              {
+                  protocol: "https",
+                  hostname: "**"
+              },
+              {
+                  protocol: "http",
+                  hostname: "**"
+              }
+          ]
       },
 
         async headers() {
@@ -39,4 +54,4 @@ const nextConfig =
 
 
 
-module.exports = nextConfig
+module.exports = removeImports(nextConfig)
