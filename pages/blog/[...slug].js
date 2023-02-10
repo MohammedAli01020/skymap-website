@@ -1,11 +1,33 @@
-import {fetchPostItem} from "@/utils/RealEstatesAPI";
+import {fetchPostItem, getAllPosts} from "@/utils/RealEstatesAPI";
 import Head from "next/head";
 import {serialize} from "next-mdx-remote/serialize";
 import {MDXRemote} from "next-mdx-remote";
-import {Code, Heading} from "@chakra-ui/react";
-import MDXComponents from "@/components/MDXComponents";
+import {convertToSlug} from "@/components/listItems";
 
-export async function getServerSideProps(context) {
+
+export async function getStaticPaths() {
+
+    const response = await getAllPosts(0);
+    const data = await response.json();
+
+    const paths = data.content.map( post => {
+        return {
+            params: {
+                slug: [`${post.postId}`, convertToSlug(post.title)]
+            }
+        }
+    })
+
+    return {
+        paths,
+        fallback: 'blocking'
+    }
+
+}
+
+
+
+export async function getStaticProps(context) {
 
     const {params} = context;
     const { slug } = params;
@@ -13,38 +35,27 @@ export async function getServerSideProps(context) {
     const id = slug[0]
     // const title = slug[1]
 
-
     try {
         const response = await fetchPostItem(id);
         if (response.ok && response) {
 
             const post = await response.json();
 
-
-            // const sss = ` ## wleocme here *wleocm* **msm** hi welcome`;
             const mdxSource = await serialize(post.content,
-
-
-
-                // {
-                //
-                //     // made available to the arguments of any custom mdx component
-                //     scope: {},
-                //     // MDX's available options, see the MDX docs for more info.
-                //     // https://mdxjs.com/packages/mdx/#compilefile-options
-                //     mdxOptions: {
-                //         remarkPlugins: [],
-                //         rehypePlugins: [],
-                //         format: 'mdx',
-                //     },
-                //     // Indicates whether or not to parse the frontmatter from the mdx source
-                //     parseFrontmatter: false,
-                // }
+                {
+                    // made available to the arguments of any custom mdx component
+                    scope: {},
+                    // MDX's available options, see the MDX docs for more info.
+                    // https://mdxjs.com/packages/mdx/#compilefile-options
+                    mdxOptions: {
+                        remarkPlugins: [],
+                        rehypePlugins: [],
+                        format: 'mdx',
+                    },
+                    // Indicates whether or not to parse the frontmatter from the mdx source
+                    parseFrontmatter: true,
+                }
             )
-
-
-
-
             return {
                 props: {
                     post,
@@ -67,39 +78,40 @@ export async function getServerSideProps(context) {
 }
 
 
+
+
+
 export default function PostDetails({post, mdxSource}) {
 
     return<>
 
         <Head>
-            <title>مدنه سكاي ماب</title>
+            <title>{post.title}</title>
 
             <meta
                 name="description"
-                content="مدونه سكاي ماب - sky map تحتوي علي كل ما يخص اخبار العقارات بمدينتي وايضا الاخبار العامة"
+                content={post.description}
             />
 
 
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
+            <link rel="apple-touch-icon" href={post.imageUrl} />
             <link rel="icon" href={"/favicon.ico"} />
 
 
-            <meta property="twitter:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
-            <meta property="twitter:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
-            <meta property="twitter:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
+            <meta property="twitter:title" content={post.title}/>
+            <meta property="twitter:description" content={post.description}/>
+            <meta property="twitter:image" content={post.imageUrl} />
             <meta property="twitter:card" content="summary_large_image" />
 
 
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/`}/>
-            <meta property="og:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
-            <meta property="og:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
-            <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
+            <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/${post.postId}/${convertToSlug(post.title)}`}/>
+            <meta property="og:title" content={post.title}/>
+            <meta property="og:description" content={post.description}/>
+            <meta property="og:image" content={post.imageUrl} />
 
-
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark.min.css"></link>
-        </Head>
+     </Head>
 
         <article itemScope itemType="http://schema.org/Article">
             <header style={{padding: 20}}>
@@ -128,5 +140,6 @@ export default function PostDetails({post, mdxSource}) {
 
 const components = {
     img: (props) => <img {...props} style={{maxWidth: "100%", maxHeight: "500px"}} />,
+
 
 }

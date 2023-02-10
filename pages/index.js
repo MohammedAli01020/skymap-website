@@ -231,8 +231,6 @@ export async function getStaticProps() {
     }
 
 
-
-
 }
 
 

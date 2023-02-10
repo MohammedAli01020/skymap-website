@@ -167,11 +167,17 @@
     .navBar ul li a {
         margin-bottom: 12px;
     }
-
 }
 
 
+.logo {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+}
 
-
-
+.logo:hover {
+    text-decoration: none;
+}
 

@@ -12,7 +12,7 @@ export async function getServerSideProps (context) {
     const fields = data.map(item => {
 
         return  {
-            loc: `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${item.id}/${convertToSlug(item.title)}.html`,
+            loc: `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${item.postId}/${convertToSlug(item.title)}.html`,
             lastmod: item.lastUpdateDateTime != null ?
                 new Date(item.lastUpdateDateTime).toISOString()
                 : item.createDateTime != null ?
@@ -27,8 +27,6 @@ export async function getServerSideProps (context) {
 
     return getServerSideSitemap(context, fields)
 }
-
-
 
 
 
