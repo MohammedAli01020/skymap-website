@@ -19,8 +19,6 @@ export async function getServerSideProps (context) {
 
     const data = await response.json();
 
-    console.log(data)
-
     const fields = data.map(item => {
 
         return  {
@@ -39,8 +37,6 @@ export async function getServerSideProps (context) {
 
     return getServerSideSitemap(context, fields)
 }
-
-
 
 
 

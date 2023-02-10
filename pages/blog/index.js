@@ -60,16 +60,16 @@ export default function Posts({data}) {
                 <link rel="icon" href={"/favicon.ico"} />
 
 
-                <meta property="twitter:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
-                <meta property="twitter:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
+                <meta property="twitter:title" content={"مدونة سكاي ماب | sky map blog"}/>
+                <meta property="twitter:description" content={"مدونه سكاي ماب - sky map تحتوي علي كل ما يخص اخبار العقارات بمدينتي وايضا الاخبار العامة"}/>
                 <meta property="twitter:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
                 <meta property="twitter:card" content="summary_large_image" />
 
 
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/`}/>
-                <meta property="og:title" content={"سكاي ماب – كل مايخص عقارات مدينتى"}/>
-                <meta property="og:description" content={"سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"}/>
+                <meta property="og:title" content={"مدونة سكاي ماب | sky map blog"}/>
+                <meta property="og:description" content={"مدونه سكاي ماب - sky map تحتوي علي كل ما يخص اخبار العقارات بمدينتي وايضا الاخبار العامة"}/>
                 <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
 
             </Head>

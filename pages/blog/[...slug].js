@@ -3,14 +3,14 @@ import Head from "next/head";
 import {serialize} from "next-mdx-remote/serialize";
 import {MDXRemote} from "next-mdx-remote";
 import {convertToSlug} from "@/components/listItems";
-
+import styles from "@/styles/Posts.module.css"
 
 export async function getStaticPaths() {
 
     const response = await getAllPosts(0);
     const data = await response.json();
 
-    const paths = data.content.map( post => {
+    const paths = data.content.map(post => {
         return {
             params: {
                 slug: [`${post.postId}`, convertToSlug(post.title)]
@@ -26,11 +26,10 @@ export async function getStaticPaths() {
 }
 
 
-
 export async function getStaticProps(context) {
 
     const {params} = context;
-    const { slug } = params;
+    const {slug} = params;
 
     const id = slug[0]
     // const title = slug[1]
@@ -78,12 +77,9 @@ export async function getStaticProps(context) {
 }
 
 
-
-
-
 export default function PostDetails({post, mdxSource}) {
 
-    return<>
+    return <>
 
         <Head>
             <title>{post.title}</title>
@@ -94,39 +90,65 @@ export default function PostDetails({post, mdxSource}) {
             />
 
 
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="apple-touch-icon" href={post.imageUrl} />
-            <link rel="icon" href={"/favicon.ico"} />
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link rel="apple-touch-icon" href={post.imageUrl}/>
+            <link rel="icon" href={"/favicon.ico"}/>
 
 
             <meta property="twitter:title" content={post.title}/>
             <meta property="twitter:description" content={post.description}/>
-            <meta property="twitter:image" content={post.imageUrl} />
-            <meta property="twitter:card" content="summary_large_image" />
+            <meta property="twitter:image" content={post.imageUrl}/>
+            <meta property="twitter:card" content="summary_large_image"/>
 
 
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${process.env.NEXT_PUBLIC_BASE_URL}/${post.postId}/${convertToSlug(post.title)}`}/>
+            <meta property="og:type" content="website"/>
+            <meta property="og:url"
+                  content={`${process.env.NEXT_PUBLIC_BASE_URL}/${post.postId}/${convertToSlug(post.title)}`}/>
             <meta property="og:title" content={post.title}/>
             <meta property="og:description" content={post.description}/>
-            <meta property="og:image" content={post.imageUrl} />
+            <meta property="og:image" content={post.imageUrl}/>
 
-     </Head>
+        </Head>
 
-        <article itemScope itemType="http://schema.org/Article">
+        <article itemScope itemType="http://schema.org/BlogPosting" className={styles.article}>
+            <meta itemProp="image" content={post.imageUrl}/>
+
             <header style={{padding: 20}}>
                 <div>
                     <h1
                         itemProp="headline"
                     >
-                       {post.title}
+                        {post.title}
                     </h1>
-                    <p>
-                        {new Date(post.createDateTime).toUTCString()}
-                    </p>
+
+                    <div>
+                        <span itemProp="datePublished" content={new Date(post.createDateTime).toUTCString()}>
+                          تاريخ النشر:{new Date(post.createDateTime).toUTCString()}
+                        </span>
+
+
+                        {post.lastUpdateDateTime && (
+                            <span itemProp="dateModified" content={new Date(post.lastUpdateDateTime).toUTCString()}>
+                              اخر تحديث: {new Date(post.lastUpdateDateTime).toUTCString()}
+                            </span>
+                        )
+                        }
+
+                    </div>
+
 
                     {post.author && (
-                        <p>بواسطة {post.author.username}</p>
+
+                        <div>
+                        بواسطة
+                            <span itemProp="author" itemScope itemType="https://schema.org/Person">
+                                <a itemProp="url" href="#">
+                                   <span itemProp="name">{post.author.username}</span>
+
+                                </a>
+                            </span>
+
+                        </div>
                     )}
 
                 </div>
@@ -134,8 +156,8 @@ export default function PostDetails({post, mdxSource}) {
 
 
             {/*dir={"ltr"} lang={"en"}*/}
-            <section  itemProp="articleBody" style={{margin: "0 40px"}}>
-                <MDXRemote {...mdxSource} components={components} />
+            <section itemProp="articleBody" style={{margin: "0 40px"}}>
+                <MDXRemote {...mdxSource} components={components}/>
             </section>
         </article>
 
@@ -144,7 +166,7 @@ export default function PostDetails({post, mdxSource}) {
 }
 
 const components = {
-    img: (props) => <img {...props} style={{maxWidth: "100%", maxHeight: "500px"}} />,
+    img: (props) => <img {...props} style={{maxWidth: "100%", maxHeight: "500px"}}/>,
 
 
 }
