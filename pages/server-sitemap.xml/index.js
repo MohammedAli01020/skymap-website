@@ -24,7 +24,7 @@ export async function getServerSideProps (context) {
     const fields = data.map(item => {
 
         return  {
-            loc: `${process.env.NEXT_PUBLIC_BASE_URL}/details/${item.id}/${convertToSlug(buildTitleForSiteMap(item))}.html`,
+            loc: `https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.id}/${convertToSlug(buildTitleForSiteMap(item))}.html`,
             lastmod: item.lastUpdateDateTime != null ?
                 new Date(item.lastUpdateDateTime).toISOString()
                 : item.creationDateTime != null ?
