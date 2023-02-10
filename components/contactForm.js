@@ -1,6 +1,4 @@
-
 import {useForm} from "react-hook-form";
-import {createPost} from "@/utils/RealEstatesAPI";
 import {useState} from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -14,6 +12,7 @@ const MarkdownEditor = dynamic(
 );
 
 export default function ContactForm({session}) {
+
 
     const {register, handleSubmit, errors, reset } = useForm();
 
@@ -29,10 +28,8 @@ export default function ContactForm({session}) {
             ...data,
             authorId: session?.user?.uid,
             content,
-            createDateTime: new Date().getMilliseconds(),
+            createDateTime:  Date.now()
         }
-
-        console.log("newData" + JSON.stringify(newData))
 
         updateState('submitting')
 

@@ -1,8 +1,16 @@
 import ContactForm from "@/components/contactForm";
 import styles from "@/styles/CreatePost.module.css"
-import {getSession} from "next-auth/react";
+import {getSession, useSession} from "next-auth/react";
 
-export default function Create({session}) {
+export default function Create() {
+
+    const {data: session, status: loading} = useSession();
+
+
+    if (loading === 'loading') {
+        return <h1>جاري التحميل ...</h1>
+    }
+
 
     return<>
         <section className={styles.container}>
@@ -29,7 +37,7 @@ export async function getServerSideProps(context){
     return {
 
         props: {
-            session
+
         }
     }
 

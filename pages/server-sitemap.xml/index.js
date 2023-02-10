@@ -15,7 +15,7 @@ export const buildTitleForSiteMap = (item) => {
 
 export async function getServerSideProps (context) {
 
-    const response = await fetch('http://ec2-54-167-167-213.compute-1.amazonaws.com:5000/skymap/api/realestates/sitemap')
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/realestates/sitemap`)
 
     const data = await response.json();
 
@@ -24,7 +24,7 @@ export async function getServerSideProps (context) {
     const fields = data.map(item => {
 
         return  {
-            loc: `https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.id}/${convertToSlug(buildTitleForSiteMap(item))}.html`,
+            loc: `${process.env.NEXT_PUBLIC_BASE_URL}/details/${item.id}/${convertToSlug(buildTitleForSiteMap(item))}.html`,
             lastmod: item.lastUpdateDateTime != null ?
                 new Date(item.lastUpdateDateTime).toISOString()
                 : item.creationDateTime != null ?

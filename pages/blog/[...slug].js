@@ -124,6 +124,11 @@ export default function PostDetails({post, mdxSource}) {
                     <p>
                         {new Date(post.createDateTime).toUTCString()}
                     </p>
+
+                    {post.author && (
+                        <p>بواسطة {post.author.username}</p>
+                    )}
+
                 </div>
             </header>
 
