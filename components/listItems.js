@@ -6,9 +6,15 @@ import {buildTitle} from "@/pages/details/[...slug]";
 
 
 export const convertToSlug = (text) => {
-    return text.toLowerCase()
+    return  text
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-zA-Zء-ي0-9/]+/g, '')
         // .replace(/[^\w ]+/g, '')
-        .replace(/ +/g, '-');
+        .replace(/\s+/g, '-')
+       .replace(/ +/g, '-');
+
+    // return encodeURIComponent(val)
 }
 
 export const sizeExists = (item) => {

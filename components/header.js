@@ -32,7 +32,6 @@ export default function Header() {
                 event.preventDefault()
                 console.log(active)
                 setActive(!active)
-                setActive(false)
             }
             }>
                 <div className={styles.line}></div>
@@ -44,8 +43,6 @@ export default function Header() {
             <div className={`${styles.navBar}  ${active ? styles.active : ""}`}>
                 <ul>
                     <li onClick={e => {
-
-                        console.log("about")
                         e.preventDefault()
                         setSelected("about")
                         setActive(false)
