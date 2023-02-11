@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 
 import "@uiw/react-markdown-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
+import {createPost} from "@/utils/RealEstatesAPI";
 
 const MarkdownEditor = dynamic(
     () => import("@uiw/react-markdown-editor").then((mod) => mod.default),
@@ -18,6 +19,7 @@ export default function ContactForm({session}) {
 
     const [state, updateState] = useState('idle')
     const [content, setContent] = useState("");
+
 
     const onSubmit = (data) => {
         if (!content) {

@@ -7,12 +7,11 @@ import {buildTitle} from "@/pages/details/[...slug]";
 
 export const convertToSlug = (text) => {
     return  text
-        .trim()
         .toLowerCase()
-        .replace(/[^a-zA-Zء-ي0-9/]+/g, '')
         // .replace(/[^\w ]+/g, '')
         .replace(/\s+/g, '-')
-       .replace(/ +/g, '-');
+        .replace(/ +/g, '-')
+        .replace(/[^a-zA-Zء-ي0-9/]+/g, '');
 
     // return encodeURIComponent(val)
 }
