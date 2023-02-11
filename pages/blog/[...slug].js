@@ -5,6 +5,8 @@ import {MDXRemote} from "next-mdx-remote";
 import {convertToSlug} from "@/components/listItems";
 import styles from "@/styles/Posts.module.css"
 
+
+
 export async function getStaticPaths() {
 
     const response = await getAllPosts(0);
