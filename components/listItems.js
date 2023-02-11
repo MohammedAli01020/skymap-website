@@ -11,7 +11,7 @@ export const convertToSlug = (text) => {
         // .replace(/[^\w ]+/g, '')
         .replace(/\s+/g, '-')
         .replace(/ +/g, '-')
-        .replace(/[^a-zA-Zء-ي0-9/]+/g, '');
+        .replace(/[^-a-zA-Zء-ي0-9/]+/g, '');
 
     // return encodeURIComponent(val)
 }
