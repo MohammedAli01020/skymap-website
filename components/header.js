@@ -85,7 +85,7 @@ export default function Header() {
 
                     {loading !== "loading" && !session && (
                         <li >
-                            <Link href={"/api/auth/signin"} legacyBehavior>
+                            <Link href={"/api/auth/signin"} legacyBehavior >
                                 <a onClick={e => {
                                     e.preventDefault()
                                     setActive(false)
@@ -99,8 +99,8 @@ export default function Header() {
 
 
                     {loading !== "loading" && loading === 'authenticated' && session && (
-                        <li>
-                            <Link href={"/api/auth/signout"} legacyBehavior>
+                        <li >
+                            <Link href={"/api/auth/signout"} legacyBehavior >
                                 <a onClick={e => {
                                     e.preventDefault()
                                     setActive(false)

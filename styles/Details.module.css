@@ -1,8 +1,14 @@
 .content {
     display: flex;
     flex-wrap: wrap;
-    margin: 40px;
+    margin: 20px 100px;
     gap: 1%;
+}
+
+@media screen and (max-width: 900px){
+    .content {
+        margin: 0 auto;
+    }
 }
 
 

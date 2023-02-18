@@ -30,6 +30,7 @@ export default async function handler(req, res) {
         // e.g. for "/blog/[slug]" this should be "/blog/post-1"
         // await res.revalidate('/path-to-revalidate')
 
+
          paths.forEach(async (p) => {
             await res.revalidate(p)
         })

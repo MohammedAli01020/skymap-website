@@ -45,7 +45,7 @@ export default function Posts({data}) {
     }
 
     return(
-        <div >
+        <>
             <Head>
                 <title>مدونة سكاي ماب | sky map blog</title>
 
@@ -73,8 +73,7 @@ export default function Posts({data}) {
                 <meta property="og:image" content={`${process.env.NEXT_PUBLIC_BASE_URL}/meta-logo.jpeg`} />
 
             </Head>
-
-            <main className={styles.main}>
+            <main className={styles.defaultMargin}>
                 <section >
 
                     <div style={{display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "flex-start", alignItems: "center"}}>
@@ -110,7 +109,7 @@ export default function Posts({data}) {
 
                 </section>
             </main>
-        </div>
+        </>
 
     )
 

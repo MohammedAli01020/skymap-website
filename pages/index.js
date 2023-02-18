@@ -128,7 +128,7 @@ export default function Home({data}) {
 
 
   return (
-    <div >
+    <>
       <Head>
           <title>سكاي ماب – كل مايخص عقارات مدينتى</title>
 
@@ -203,7 +203,7 @@ export default function Home({data}) {
 
           </div>
       </main>
-    </div>
+    </>
   )
 }
 

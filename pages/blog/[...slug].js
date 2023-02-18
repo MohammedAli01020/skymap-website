@@ -12,6 +12,8 @@ export async function getStaticPaths() {
     const response = await getAllPosts(0);
     const data = await response.json();
 
+
+    console.log("from path");
     const paths = data.content.map(post => {
         return {
             params: {
@@ -32,6 +34,10 @@ export async function getStaticProps(context) {
 
     const {params} = context;
     const {slug} = params;
+
+
+    console.log("from getStaticProps: " + JSON.stringify(params));
+
 
     const id = slug[0]
     // const title = slug[1]
@@ -65,13 +71,13 @@ export async function getStaticProps(context) {
             }
         } else {
             return {
-                notFount: true
+                notFound: true
             }
         }
 
     } catch (e) {
         return {
-            notFount: true
+            notFound: true
         }
     }
 
@@ -112,7 +118,7 @@ export default function PostDetails({post, mdxSource}) {
 
         </Head>
 
-        <article itemScope itemType="http://schema.org/BlogPosting" className={styles.article}>
+        <article itemScope itemType="http://schema.org/BlogPosting" className={styles.defaultMargin}>
             <meta itemProp="image" content={post.imageUrl}/>
 
             <header style={{padding: 20}}>

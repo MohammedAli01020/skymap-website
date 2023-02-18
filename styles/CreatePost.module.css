@@ -1,7 +1,7 @@
 .container {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+    margin: 10px 100px;
 }
 
 .container input  {
@@ -15,5 +15,9 @@
     box-sizing: border-box;
 }
 
-
+@media screen and (max-width: 900px){
+    .container {
+        margin: 10px auto;
+    }
+}
 
