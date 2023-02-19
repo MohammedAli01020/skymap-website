@@ -1,5 +1,5 @@
 
-import {fetchItem} from "@/utils/RealEstatesAPI";
+import {fetchItem, getAll, getAllPosts} from "@/utils/RealEstatesAPI";
 import styles from '@/styles/Details.module.css'
 import Head from 'next/head'
 
@@ -7,7 +7,29 @@ import Slider from "@/components/slider";
 import Desc from "@/components/desc";
 import {convertToSlug, getImageName, sizeExists} from "@/components/listItems";
 
-export async function getServerSideProps(context) {
+
+export async function getStaticPaths() {
+
+    const response = await getAll(0);
+    const data = await response.json();
+
+
+    const paths = data.content.map(item => {
+        return {
+            params: {
+                slug: [`${item.realEstateId}`, `${convertToSlug(buildTitle(item))}.html`]
+            }
+        }
+    })
+
+    return {
+        paths,
+        fallback: 'blocking'
+    }
+
+}
+
+export async function getStaticProps(context) {
 
     const {params} = context;
     const { slug } = params;
@@ -91,10 +113,10 @@ export const subCatNames = new Map([
 export const buildTitle = (item) => {
     if (item.phase) {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${subCatNames.get(item.subCat)} ${obj} بالمرحلة ${item.phase}` ;
+        return `${subCatNames.get(item.subCat)} ${obj} بالمرحلة ${item.phase} في مدينتي` ;
     } else {
         const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${subCatNames.get(item.subCat)} ${obj}` ;
+        return `${subCatNames.get(item.subCat)} ${obj} في مدينتي` ;
     }
 }
 

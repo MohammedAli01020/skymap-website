@@ -93,7 +93,9 @@ export default function Posts({data}) {
                     <PostsList  allPostsData={currentData.items}/>
 
                     <Pagination
-                        variant="outlined" shape="rounded"
+                        variant="outlined"
+
+                        shape="rounded"
 
                         count={currentData.totalPages - 1}
 
@@ -137,8 +139,6 @@ export async function getServerSideProps(context) {
     } catch (e) {
         return { notFound: true };
     }
-
-
 
 
 }

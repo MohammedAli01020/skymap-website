@@ -1,5 +1,4 @@
 import styles from '../styles/Home.module.css'
-import {useRouter} from "next/router";
 import Desc from "@/components/desc";
 import Link from "next/link";
 import {buildTitle} from "@/pages/details/[...slug]";
@@ -36,7 +35,7 @@ const onImageError = (e) => {
 
 export default function ListItems({ items }) {
 
-    const route = useRouter();
+    // const route = useRouter();
 
     if (!items.length) {
 

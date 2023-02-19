@@ -30,20 +30,20 @@ export default function Footer() {
                         itemScope itemType={"http://www.schema.org/SiteNavigationElement"}
                         className={styles.footerMenu} >
                         <li itemProp={"name"} >
-                            <Link href="/" itemprop={"url"}> الرئيسية </Link>
+                            <Link href="/" itemProp={"url"}> الرئيسية </Link>
                         </li>
 
                         <li itemProp={"name"}>
-                            <Link href={"/about"} itemprop={"url"}> عن الشركة </Link>
+                            <Link href={"/about"} itemProp={"url"}> عن الشركة </Link>
                         </li>
 
 
                         <li itemProp={"name"}>
-                            <Link href={"/contact"} itemprop={"url"}> تواصل معنا </Link>
+                            <Link href={"/contact"} itemProp={"url"}> تواصل معنا </Link>
                         </li>
 
                         <li itemProp={"name"}>
-                            <Link href={"/blog"} itemprop={"url"}> المدونه </Link>
+                            <Link href={"/blog"} itemProp={"url"}> المدونه </Link>
                         </li>
 
                     </ul>

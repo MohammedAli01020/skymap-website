@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -12,14 +12,30 @@ const MarkdownEditor = dynamic(
     { ssr: false }
 );
 
-export default function ContactForm({session}) {
+export default function ContactForm({session, post}) {
 
+    const {register, handleSubmit, errors, reset } = useForm({
+        defaultValues: post ? {
+            postId: post.postId,
+            createDateTime: post.createDateTime,
+            authorId: post.uid,
+            title: post.title,
+            description: post.description,
+            imageUrl: post.imageUrl
+        } : {
 
-    const {register, handleSubmit, errors, reset } = useForm();
+        }
+    });
 
     const [state, updateState] = useState('idle')
     const [content, setContent] = useState("");
 
+
+    useEffect(() => {
+        if (post) {
+            setContent(post.content)
+        }
+    }, [])
 
     const onSubmit = (data) => {
         if (!content) {
@@ -28,9 +44,10 @@ export default function ContactForm({session}) {
 
         const newData = {
             ...data,
-            authorId: session?.user?.uid,
             content,
-            createDateTime:  Date.now()
+            authorId: post ? post?.uid : session?.user?.uid,
+            lastUpdateDateTime: post ? Date.now() : null,
+            createDateTime: post ? post.createDateTime : Date.now()
         }
 
         updateState('submitting')

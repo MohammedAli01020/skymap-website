@@ -1,8 +1,6 @@
 .grid {
-
     display: block;
-    padding: 16px
-
+    padding: 16px;
 }
 
 @media screen and (min-width: 768px){

@@ -1,8 +1,9 @@
 import ContactForm from "@/components/contactForm";
 import styles from "@/styles/CreatePost.module.css"
 import {getSession, useSession} from "next-auth/react";
+import {fetchPostItem} from "@/utils/RealEstatesAPI";
 
-export default function Create() {
+export default function Create({post}) {
 
     const {data: session, status: loading} = useSession();
 
@@ -14,7 +15,7 @@ export default function Create() {
 
     return<>
         <section className={styles.container}>
-            <ContactForm session={session}/>
+            <ContactForm session={session} post={post}/>
         </section>
 
     </>
@@ -22,7 +23,6 @@ export default function Create() {
 
 
 export async function getServerSideProps(context){
-
     const session = await getSession(context);
 
     if (!session) {
@@ -34,8 +34,33 @@ export async function getServerSideProps(context){
         }
     }
 
-    return {
 
+    const query = context.query;
+
+    if (query.postId) {
+        try {
+            const response = await fetchPostItem(query.postId);
+            if (response.ok || !response) {
+                const post = await response.json();
+                return {
+                    props: {
+                        post
+                    }
+                }
+            } else {
+                return {
+                    notFound: true
+                }
+            }
+
+        } catch (e) {
+            return {
+                notFound: true
+            }
+        }
+    }
+
+    return {
         props: {
 
         }

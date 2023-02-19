@@ -5,7 +5,12 @@ import {MDXRemote} from "next-mdx-remote";
 import {convertToSlug} from "@/components/listItems";
 import styles from "@/styles/Posts.module.css"
 
+import remarkGfm from 'remark-gfm'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
 
+import Youtube from "@/components/youtube";
 
 export async function getStaticPaths() {
 
@@ -17,7 +22,7 @@ export async function getStaticPaths() {
     const paths = data.content.map(post => {
         return {
             params: {
-                slug: [`${post.postId}`, convertToSlug(post.title)]
+                slug: [`${post.postId}`, `${convertToSlug(post.title)}.html`]
             }
         }
     })
@@ -55,8 +60,8 @@ export async function getStaticProps(context) {
                     // MDX's available options, see the MDX docs for more info.
                     // https://mdxjs.com/packages/mdx/#compilefile-options
                     mdxOptions: {
-                        remarkPlugins: [],
-                        rehypePlugins: [],
+                        remarkPlugins: [remarkGfm, remarkParse, remarkRehype],
+                        rehypePlugins: [rehypeStringify],
                         format: 'mdx',
                     },
                     // Indicates whether or not to parse the frontmatter from the mdx source
@@ -162,19 +167,19 @@ export default function PostDetails({post, mdxSource}) {
                 </div>
             </header>
 
-
-            {/*dir={"ltr"} lang={"en"}*/}
             <section itemProp="articleBody" style={{margin: "0 40px"}}>
                 <MDXRemote {...mdxSource} components={components}/>
             </section>
         </article>
 
-
     </>
 }
 
+
+
+
+
 const components = {
     img: (props) => <img {...props} style={{maxWidth: "100%", maxHeight: "500px"}}/>,
-
-
+    Youtube
 }
