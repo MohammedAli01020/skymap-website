@@ -1,16 +1,16 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import {convertToSlug} from "@/components/listItems";
-import {subCatNames} from "@/pages/details/[...slug]";
+import {buildTitle, subCatNames} from "@/pages/details/[...slug]";
 
-export const buildTitleForSiteMap = (item) => {
-    if (item.phase) {
-        const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${subCatNames.get(item.subCat)} ${obj} بالمرحلة ${item.phase}` ;
-    } else {
-        const obj = item.objective === 0 ? "للبيع": "للايجار";
-        return `${subCatNames.get(item.subCat)} ${obj}` ;
-    }
-}
+// export const buildTitleForSiteMap = (item) => {
+//     if (item.phase) {
+//         const obj = item.objective === 0 ? "للبيع": "للايجار";
+//         return `${subCatNames.get(item.subCat)} ${obj} بالمرحلة ${item.phase} في مدينتي` ;
+//     } else {
+//         const obj = item.objective === 0 ? "للبيع": "للايجار";
+//         return `${subCatNames.get(item.subCat)} ${obj} في مدينتي` ;
+//     }
+// }
 
 
 export async function getServerSideProps (context) {
@@ -22,7 +22,7 @@ export async function getServerSideProps (context) {
     const fields = data.map(item => {
 
         return  {
-            loc: `https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.id}/${convertToSlug(buildTitleForSiteMap(item))}.html`,
+            loc: `https://main.d2hqtqv4zfjkly.amplifyapp.com/details/${item.id}/${convertToSlug(buildTitle(item))}.html`,
             lastmod: item.lastUpdateDateTime != null ?
                 new Date(item.lastUpdateDateTime).toISOString()
                 : item.creationDateTime != null ?
