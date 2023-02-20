@@ -3,7 +3,7 @@ export default function Youtube ({props}) {
     const {id, title} = props;
     return (
 
-        <div>
+        <div style={{margin: "2em 0"}}>
 
             <iframe
 

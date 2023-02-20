@@ -136,7 +136,7 @@ export default function Home({data}) {
           <title>سكاي ماب – كل مايخص عقارات مدينتى</title>
 
           <meta name="google-site-verification" content="Sk0jwE1j981x7cuL4cdFvOxMjRx2TMuj-EwkZlj462I" />
-
+          <meta name="google-site-verification" content="GfxDpS1GcYjcOdaGNvb1sLuU00-Uy7i-3RsWVgXm4a0" />
           <meta
               name="description"
               content="سكاي ماب أكبر قاعدة بيانات شقق و فيلات محلات تجارية لـ عقارات مدينتى طلعت مصطفي و افضل اسعار شقق مدينتى"
