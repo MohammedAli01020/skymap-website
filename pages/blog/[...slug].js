@@ -18,8 +18,6 @@ export async function getStaticPaths() {
     const response = await getAllPosts(0);
     const data = await response.json();
 
-
-    console.log("from path");
     const paths = data.content.map(post => {
         return {
             params: {
@@ -40,10 +38,6 @@ export async function getStaticProps(context) {
 
     const {params} = context;
     const {slug} = params;
-
-
-    console.log("from getStaticProps: " + JSON.stringify(params));
-
 
     const id = slug[0]
     // const title = slug[1]

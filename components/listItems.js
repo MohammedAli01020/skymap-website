@@ -97,7 +97,7 @@ export default function ListItems({ items }) {
                                 <p style={{
                                     fontWeight: "bold"
                                 }}>{item.requiredPrice} EG</p>
-                                <p>{item.subCat}</p>
+
                                 <p >{item.body}</p>
                                 <p>{item.buildingArea} m2</p>
 

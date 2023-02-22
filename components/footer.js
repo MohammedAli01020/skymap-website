@@ -7,8 +7,13 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Link from "next/link";
+import {useDispatch, useSelector} from "react-redux";
+import {setActive, setSelected} from "@/store/headerSlice";
 
 export default function Footer() {
+
+    const state = useSelector((state) => state.header)
+    const dispatch = useDispatch()
 
     return (
 
@@ -29,20 +34,40 @@ export default function Footer() {
 
                         itemScope itemType={"http://www.schema.org/SiteNavigationElement"}
                         className={styles.footerMenu} >
-                        <li itemProp={"name"} >
+                        <li itemProp={"name"} onClick={e => {
+                            e.preventDefault()
+                            dispatch(setSelected("/"))
+                            dispatch(setActive(false))
+
+                        }}>
                             <Link href="/" itemProp={"url"}> الرئيسية </Link>
                         </li>
 
-                        <li itemProp={"name"}>
+                        <li itemProp={"name"} onClick={e => {
+                            e.preventDefault()
+                            dispatch(setSelected("about"))
+                            dispatch(setActive(false))
+
+                        }}>
                             <Link href={"/about"} itemProp={"url"}> عن الشركة </Link>
                         </li>
 
 
-                        <li itemProp={"name"}>
+                        <li itemProp={"name"} onClick={e => {
+                            e.preventDefault()
+                            dispatch(setSelected("contact"))
+                            dispatch(setActive(false))
+
+                        }}>
                             <Link href={"/contact"} itemProp={"url"}> تواصل معنا </Link>
                         </li>
 
-                        <li itemProp={"name"}>
+                        <li itemProp={"name"} onClick={e => {
+                            e.preventDefault()
+                            dispatch(setSelected("blog"))
+                            dispatch(setActive(false))
+
+                        }}>
                             <Link href={"/blog"} itemProp={"url"}> المدونه </Link>
                         </li>
 
