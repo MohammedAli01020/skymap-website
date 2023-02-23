@@ -1,11 +1,36 @@
-import { configureStore } from '@reduxjs/toolkit'
+import {combineReducers, configureStore} from '@reduxjs/toolkit'
 
-import counterReducer from '@/store/counterSlice.js'
-import headerReducer from '@/store/headerSlice.js'
+import counter from '@/store/counterSlice.js'
+import header from '@/store/headerSlice.js'
+import realestates from '@/store/realestatesSlice.js'
 
-export const store = configureStore({
-    reducer: {
-        counter: counterReducer,
-        header: headerReducer
-    },
+import {createWrapper, HYDRATE} from 'next-redux-wrapper'
+
+const combineReducer = combineReducers({
+    counter,
+    header,
+    realestates,
 })
+
+
+const masterReducer = (state, action) => {
+
+    console.log("payloadnew: "  +  JSON.stringify(action.payload))
+
+    if (action.type === HYDRATE) {
+        return {
+            ...state,
+            realestates: action.payload.realestates
+        }
+    } else {
+        return combineReducer(state, action)
+    }
+
+}
+
+const makeStore = () => configureStore({
+        reducer: masterReducer
+    })
+
+
+export const wrapper = createWrapper(makeStore,{debug: true})

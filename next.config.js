@@ -8,7 +8,8 @@ const removeImports = require('next-remove-imports')({
 const nextConfig =
     {
       reactStrictMode: true,
-      experimental: { esmExternals: true },
+
+      experimental: { esmExternals: true, scrollRestoration: true },
       images: {
         domains: ['images.unsplash.com', 'main.d2hqtqv4zfjkly.amplifyapp.com'],
         imageSizes: [16, 32, 48, 64],

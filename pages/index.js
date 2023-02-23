@@ -1,38 +1,72 @@
 import Head from 'next/head'
 import {getAll} from "@/utils/RealEstatesAPI";
 import ListItems from "@/components/listItems";
-import {useState} from "react";
+// import {useEffect, useState} from "react";
 import styles from '../styles/Home.module.css'
+import { wrapper } from '@/store/store.js'
 
 import Pagination from "@mui/material/Pagination";
+import {useDispatch, useSelector} from "react-redux";
+import {updateState} from "@/store/realestatesSlice";
 
-export default function Home({data}) {
+// {data}
+export default function Home() {
 
-    const [currentData, updateData] = useState({
-                items: data.content,
-                totalElements: data.totalElements,
-                pageSize: data.pageable.pageSize,
-                totalPages: data.totalPages,
-                pageNumber: data.pageable.pageNumber,
-                loading: false
-    });
+    // const [currentData, updateData] = useState({
+    //             items: data.content,
+    //             totalElements: data.totalElements,
+    //             pageSize: data.pageable.pageSize,
+    //             totalPages: data.totalPages,
+    //             pageNumber: data.pageable.pageNumber,
+    //             loading: false
+    // });
 
+    const currentData = useSelector((state) => state.realestates)
+    const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     dispatch(updateState({
+    //         items: data.content,
+    //         totalElements: data.totalElements,
+    //         pageSize: data.pageable.pageSize,
+    //         totalPages: data.totalPages,
+    //         pageNumber: data.pageable.pageNumber,
+    //         loading: false
+    //     }))
+    // }, [])
 
     const loadMore = async (page) => {
-        updateData({
+        // updateData({
+        //     ...currentData,
+        //     loading: true
+        // });
+        //
+
+        dispatch(updateState({
             ...currentData,
             loading: true
-        });
+        }))
+
+
 
         const data = await getAll(page);
         const response = await data.json();
 
-        updateData({
+
+        dispatch(updateState({
             ...currentData,
             items: response.content,
             pageNumber: response.pageable.pageNumber,
             loading: false
-        })
+        }))
+
+
+        // updateData({
+        //     ...currentData,
+        //     items: response.content,
+        //     pageNumber: response.pageable.pageNumber,
+        //     loading: false
+        // })
 
 
         window.scroll({top: 0, left: 0, behavior: 'smooth' })
@@ -130,6 +164,10 @@ export default function Home({data}) {
     }
 
 
+    // if (currentData.loading) {
+    //     return <center><h1>جاري التحميل</h1></center>
+    // }
+
   return (
     <>
       <Head>
@@ -213,32 +251,69 @@ export default function Home({data}) {
 }
 
 
-export async function getStaticProps() {
+Home.getInitialProps = wrapper.getInitialPageProps( store => async ({pathname, req, res})=> {
 
     try {
+        console.log("reload again")
         const response = await getAll(0);
 
         if (response.ok && response) {
 
             const data = await response.json()
-            return {
-                props: {
-                    data
-                },
-                revalidate: 10  // seconds
-            }
+
+            store.dispatch(updateState({
+                items: data.content,
+                totalElements: data.totalElements,
+                pageSize: data.pageable.pageSize,
+                totalPages: data.totalPages,
+                pageNumber: data.pageable.pageNumber,
+                loading: false
+            }))
+
+            // return {
+            //     props: {
+            //         // data
+            //     },
+            //     // revalidate: 10  // seconds
+            // }
         } else {
-            return { notFound: true };
+            return {notFound: true};
         }
 
     } catch (e) {
-        return { notFound: true };
+        return {notFound: true};
     }
+})
 
 
-}
 
 
+
+
+// export async function getStaticProps() {
+//
+//     try {
+//         const response = await getAll(0);
+//
+//         if (response.ok && response) {
+//
+//             const data = await response.json()
+//             return {
+//                 props: {
+//                     data
+//                 },
+//                 revalidate: 10  // seconds
+//             }
+//         } else {
+//             return { notFound: true };
+//         }
+//
+//     } catch (e) {
+//         return { notFound: true };
+//     }
+//
+//
+// }
 
 
 
