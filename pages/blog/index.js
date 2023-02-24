@@ -28,7 +28,7 @@ export default function Posts({data}) {
             loading: true
         });
 
-        const data = await getAllPosts(page);
+        const data = await getAllPosts(page > 0 ? (page - 1) : page);
         const response = await data.json();
 
         updateData({
@@ -99,12 +99,12 @@ export default function Posts({data}) {
 
                         count={currentData.totalPages}
 
-                        page={currentData.pageNumber}
+                        page={currentData.pageNumber + 1}
 
                         onChange={(e, value)=>{
 
                             console.log(value);
-                            if (value === currentData.pageNumber) return;
+                            if (value === currentData.pageNumber + 1) return;
                             loadMore(value).then(r => {});
 
                         }} />

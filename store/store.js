@@ -17,8 +17,6 @@ const combineReducer = combineReducers({
 
 const masterReducer = (state, action) => {
 
-    console.log("payloadnew: "  +  JSON.stringify(action.payload))
-
     if (action.type === HYDRATE) {
         return {
             ...state,

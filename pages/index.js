@@ -14,7 +14,6 @@ export default function Home() {
 
     const currentData = useSelector((state) => state.realestates)
     const currentFilters = useSelector((state) => state.filters)
-
     const dispatch = useDispatch()
 
 
@@ -27,7 +26,7 @@ export default function Home() {
 
         const data = await getAll({
             ...currentFilters,
-            pageNumber: page
+            pageNumber: page > 0 ? (page - 1) : page
         });
 
         const response = await data.json();
@@ -35,8 +34,6 @@ export default function Home() {
 
         dispatch(updateState({
             ...currentData,
-
-
             totalElements: response.totalElements,
             pageSize: response.pageable.pageSize,
             totalPages: response.totalPages,
@@ -193,36 +190,37 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-          <div style={{
-              backgroundColor: "white",
 
-              paddingTop: 10,
-              height: 100, position: "sticky",  top: 60, zIndex: 99}}>
+          {/*<div style={{*/}
+          {/*    backgroundColor: "white",*/}
 
+          {/*    paddingTop: 10,*/}
+          {/*    height: 100, position: "sticky",  top: 60, zIndex: 99}}>*/}
+          {/*    */}
+          {/*    <select*/}
+          {/*        value={currentFilters.objective}*/}
+          {/*        style={{*/}
+          {/*        padding: 10*/}
+          {/*    }} onChange={e => {*/}
+          {/*        e.preventDefault()*/}
+          {/*        dispatch(updateFilters({*/}
+          {/*            ...currentFilters,*/}
+          {/*            pageNumber: 0,*/}
+          {/*            objective: e.target.value === 'حدد الغرض' ? null : e.target.value*/}
+          {/*        }))*/}
 
-              <select
-                  value={currentFilters.objective}
-                  style={{
-                  padding: 10
-              }} onChange={e => {
-                  e.preventDefault()
-                  dispatch(updateFilters({
-                      ...currentFilters,
-                      pageNumber: 0,
-                      objective: e.target.value === 'حدد الغرض' ? null : e.target.value
-                  }))
+          {/*        loadMore(0).then(res => {})*/}
 
-                  console.log("tttL:" +  (e.target.value === 'حدد الغرض' ? null : e.target.value))
+          {/*    }}>*/}
+          {/*        <option value={null}>حدد الغرض</option>*/}
+          {/*        <option value={0}>للبيع</option>*/}
+          {/*        <option value={1}>للايجار</option>*/}
 
-                  loadMore(0).then(res => {})
-              }}>
-                  <option value={null}>حدد الغرض</option>
-                  <option value={1}>للبيع</option>
-                  <option value={0}>للايجار</option>
-
-              </select>
-          </div>
-          <br/>
+          {/*    </select>*/}
+          {/*    */}
+          {/*    */}
+          {/*</div>*/}
+          {/*<br/>*/}
 
 
 
@@ -240,12 +238,12 @@ export default function Home() {
 
                   count={currentData.totalPages}
 
-                  page={currentData.pageNumber}
+                  page={currentData.pageNumber + 1}
 
                   onChange={(e, value)=>{
 
-                      console.log(value);
-                      if (value === currentData.pageNumber) return;
+
+                      if (value === currentData.pageNumber + 1) return;
                       loadMore(value).then(r => {});
 
                   }} />
@@ -263,9 +261,10 @@ Home.getInitialProps = wrapper.getInitialPageProps( store => async ({pathname, r
 
     try {
 
-        const {filters, realestates} = store.getState();
+        const {filters, realestates } = store.getState();
 
-        if (!realestates.items) {
+        if (realestates.items && realestates.items.length !== 0) {
+
             return {
                 props: {
 

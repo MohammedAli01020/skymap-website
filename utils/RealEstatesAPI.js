@@ -14,6 +14,7 @@ const headers = {
 }
 
 export const getAll = (filters) => {
+
     const params = new URLSearchParams(filters)
     let keysForDel = [];
     params.forEach((value, key) => {
@@ -24,6 +25,9 @@ export const getAll = (filters) => {
     keysForDel.forEach(key => {
         params.delete(key);
     });
+
+
+    console.log("params" + new URLSearchParams(params))
 
      return fetch(`${api}/api/realestates/all?` + new URLSearchParams(params), {headers })
         .then(res => res)
