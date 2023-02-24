@@ -9,7 +9,6 @@ import { wrapper } from '@/store/store.js'
 import { Provider } from 'react-redux'
 
 
-
 export default function App({Component, pageProps: { session, ...pageProps}}) {
 
     const {store, props} = wrapper.useWrappedStore(pageProps);
@@ -18,9 +17,7 @@ export default function App({Component, pageProps: { session, ...pageProps}}) {
         return (
             <Provider store={store} >
                 <SessionProvider session={session}>
-                    Component.getLayout(
-                    <Component {...pageProps} />
-                    )
+                    Component.getLayout(<Component {...pageProps} />)
                 </SessionProvider>
             </Provider>
 
@@ -39,26 +36,3 @@ export default function App({Component, pageProps: { session, ...pageProps}}) {
 
 
 }
-
-//
-// const App = ({Component, pageProps: { session, ...pageProps}}) => {
-//     if (Component.getLayout) {
-//         return (
-//             <SessionProvider session={session}>
-//                 Component.getLayout(
-//                 <Component {...pageProps} />
-//                 )
-//             </SessionProvider>
-//         )
-//     }
-//     return (
-//         <SessionProvider session={session}>
-//             <Header/>
-//             <Component {...pageProps} />
-//             <Footer/>
-//         </SessionProvider>
-//     )
-//
-// }
-//
-// export default wrapper.withRedux(App)

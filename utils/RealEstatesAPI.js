@@ -13,10 +13,24 @@ const headers = {
   // 'Authorization': token
 }
 
-export const getAll = (pageNumber) =>
-  fetch(`${api}/api/realestates/all/?pageNumber=${pageNumber}&pageSize=25`, {headers })
-    .then(res => res)
-      .catch(e => e)
+export const getAll = (filters) => {
+    const params = new URLSearchParams(filters)
+    let keysForDel = [];
+    params.forEach((value, key) => {
+        if (value === 'null' || value === '') {
+            keysForDel.push(key);
+        }
+    });
+    keysForDel.forEach(key => {
+        params.delete(key);
+    });
+
+     return fetch(`${api}/api/realestates/all?` + new URLSearchParams(params), {headers })
+        .then(res => res)
+        .catch(e => e)
+
+
+}
 
 
 export const fetchItem = (id) =>
@@ -27,7 +41,7 @@ export const fetchItem = (id) =>
 
 
 export const getAllPosts = (pageNumber) =>
-    fetch(`${api}/api/posts/all/?pageNumber=${pageNumber}&pageSize=25`, {headers })
+    fetch(`${api}/api/posts/all?pageNumber=${pageNumber}&pageSize=25`, {headers })
         .then(res => res)
         .catch(reason => reason)
 

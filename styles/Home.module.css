@@ -90,8 +90,8 @@
 
 .main {
     margin: 0 100px;
-    display: flex;
-    flex-wrap: wrap;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     position: relative;
 }
 

@@ -97,7 +97,7 @@ export default function Posts({data}) {
 
                         shape="rounded"
 
-                        count={currentData.totalPages - 1}
+                        count={currentData.totalPages}
 
                         page={currentData.pageNumber}
 

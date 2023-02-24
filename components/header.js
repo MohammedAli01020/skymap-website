@@ -13,10 +13,6 @@ export default function Header() {
     const state = useSelector((state) => state.header)
     const dispatch = useDispatch()
 
-    // const [selected, setSelected] = useState("/");
-    // const [active, setActive] = useState(false);
-
-
     return <>
 
         <header className={styles.header} itemProp={"hasPart"} itemScope itemType={"http://schema.org/WPHeader"}>
