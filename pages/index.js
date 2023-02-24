@@ -9,7 +9,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateState} from "@/store/realestatesSlice";
 import {updateFilters} from "@/store/filtersSlice";
 
-
 export default function Home() {
 
     const currentData = useSelector((state) => state.realestates)
@@ -17,15 +16,20 @@ export default function Home() {
     const dispatch = useDispatch()
 
 
-    const loadMore = async (page) => {
+    const loadMore = async (page, filters) => {
+
 
         dispatch(updateState({
             ...currentData,
             loading: true
         }))
 
+
+        console.log("currentFilters: " + filters.objective)
+
+
         const data = await getAll({
-            ...currentFilters,
+            ...filters,
             pageNumber: page > 0 ? (page - 1) : page
         });
 
@@ -45,7 +49,6 @@ export default function Home() {
         window.scroll({top: 0, left: 0, behavior: 'smooth' })
 
     }
-
 
     function addRealEstateAgentJsonLd() {
         return {
@@ -94,7 +97,6 @@ export default function Home() {
         };
     }
 
-
     function addOrganizationJsonLd() {
         return {
             __html: `{
@@ -121,7 +123,6 @@ export default function Home() {
   `,
         };
     }
-
 
     function addSiteNameJsonLd() {
         return {
@@ -191,36 +192,43 @@ export default function Home() {
 
       <main className={styles.main}>
 
-          {/*<div style={{*/}
-          {/*    backgroundColor: "white",*/}
+          <div style={{
+              backgroundColor: "white",
 
-          {/*    paddingTop: 10,*/}
-          {/*    height: 100, position: "sticky",  top: 60, zIndex: 99}}>*/}
-          {/*    */}
-          {/*    <select*/}
-          {/*        value={currentFilters.objective}*/}
-          {/*        style={{*/}
-          {/*        padding: 10*/}
-          {/*    }} onChange={e => {*/}
-          {/*        e.preventDefault()*/}
-          {/*        dispatch(updateFilters({*/}
-          {/*            ...currentFilters,*/}
-          {/*            pageNumber: 0,*/}
-          {/*            objective: e.target.value === 'حدد الغرض' ? null : e.target.value*/}
-          {/*        }))*/}
+              paddingTop: 10,
+              height: 100, position: "sticky",  top: 60, zIndex: 99}}>
 
-          {/*        loadMore(0).then(res => {})*/}
+              <select
+                  value={currentFilters.objective}
+                  style={{
+                  padding: 10
+              }} onChange={async e => {
+                  e.preventDefault()
 
-          {/*    }}>*/}
-          {/*        <option value={null}>حدد الغرض</option>*/}
-          {/*        <option value={0}>للبيع</option>*/}
-          {/*        <option value={1}>للايجار</option>*/}
 
-          {/*    </select>*/}
-          {/*    */}
-          {/*    */}
-          {/*</div>*/}
-          {/*<br/>*/}
+                   dispatch(updateFilters({
+                      ...currentFilters,
+                      pageNumber: 0,
+                      objective: e.target.value === 'حدد الغرض' ? null : e.target.value
+                    }));
+
+                  loadMore(0, {
+                      ...currentFilters,
+                      pageNumber: 0,
+                      objective: e.target.value === 'حدد الغرض' ? null : e.target.value
+                  }).then(res => {
+                  })
+
+              }}>
+                  <option value={null}>حدد الغرض</option>
+                  <option value={0}>للبيع</option>
+                  <option value={1}>للايجار</option>
+
+              </select>
+
+
+          </div>
+          <br/>
 
 
 
@@ -241,10 +249,8 @@ export default function Home() {
                   page={currentData.pageNumber + 1}
 
                   onChange={(e, value)=>{
-
-
                       if (value === currentData.pageNumber + 1) return;
-                      loadMore(value).then(r => {});
+                      loadMore(value, currentFilters).then(r => {});
 
                   }} />
 
@@ -290,7 +296,6 @@ Home.getInitialProps = wrapper.getInitialPageProps( store => async ({pathname, r
                     pageNumber: data.pageable.pageNumber,
                     loading: false
                 }))
-
 
             // return {
             //     props: {
