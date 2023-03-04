@@ -12,7 +12,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [SkyMap](https://skymap-website.vercel.app/) with your browser to see the result.
+Open [https://skymap-website.vercel.app/](https://skymap-website.vercel.app/) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
